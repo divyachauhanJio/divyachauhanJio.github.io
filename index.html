@@ -51,33 +51,6 @@ f=false,d=document,code={use_existing_jquery:function(){return use_existing_jque
       -->
 <!-- End VWO Async SmartCode -->
       
-      <script>
-
-window.GROWTHBOOK_CONFIG = {
-
-  // Optional logged-in user id
-
-  userId: "123",
-
-  // Impression tracking callback (e.g. Segment, Mixpanel, GA)
-
-  track: function(experimentId, variationId) {
-
-    analytics.track("Experiment Viewed", {
-
-      experimentId,
-
-      variationId
-
-    })
-
-  }
-
-}
-
-</script>
-
-<script async src="http://localhost:3100/js/prod_OsWnn7Z1gop7TEsnSPwmquOJdj1IQlHAOiastSPrS4.js"></script>
       <!--
       <script>
 
@@ -107,6 +80,21 @@ window.GROWTHBOOK_CONFIG = {
 
 <script async src="https://cdn.growthbook.io/js/key_prod_9665b734f01de4d9.js"></script>
 -->
+      
+      <script>
+window.GROWTHBOOK_CONFIG = {
+  // Optional logged-in user id
+  userId: "123",
+  // Impression tracking callback (e.g. Segment, Mixpanel, GA)
+  track: function(experimentId, variationId) {
+    analytics.track("Experiment Viewed", {
+      experimentId,
+      variationId
+    })
+  }
+}
+</script>
+<script async src="http://localhost:3100/js/prod_OsWnn7Z1gop7TEsnSPwmquOJdj1IQlHAOiastSPrS4.js"></script>
     </head>
   
   
