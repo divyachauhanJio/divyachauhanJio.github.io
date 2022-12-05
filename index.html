@@ -34,6 +34,8 @@
       
       </style>
 
+       
+<!--
          <script>
 
 window.GROWTHBOOK_CONFIG = {
@@ -57,9 +59,11 @@ window.GROWTHBOOK_CONFIG = {
   }
 
 }
-
               
 </script>
+   -->   
+      
+<!--
       <script  >
      /* eslint-disable */
 (()=>{
@@ -84,7 +88,21 @@ if(window.growthbook)return;window.growthbook={refresh:()=>{runUndo();runExperim
 })();
 
       </script>
-      
+      -->
+      <script>
+window.GROWTHBOOK_CONFIG = {
+  // Optional logged-in user id
+  userId: "123",
+  // Impression tracking callback (e.g. Segment, Mixpanel, GA)
+  track: function(experimentId, variationId) {
+    analytics.track("Experiment Viewed", {
+      experimentId,
+      variationId
+    })
+  }
+}
+</script>
+<script async src="https://cdn.growthbook.io/js/prod_TNMF4YeuGxpsYE22bEYsVA1Gbr0LqGxinWgktFrPqY.js"></script>
     </head>
   
   
