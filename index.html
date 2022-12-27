@@ -49,31 +49,40 @@ window.GROWTHBOOK_CONFIG = {
 </script>
 <script async src="https://cdn.growthbook.io/js/prod_Io2mm4g7XE2TvMwzSKvKhHAiWhUlG9wNZokFoeBhPs.js"></script> -->
 
-<!-- <script>
+<script>
 
- window.GROWTHBOOK_CONFIG = {
-
-//Optional logged-in user id
-
-  userId: "123",
-
- //Impression tracking callback (e.g. Segment, Mixpanel, GA)
-
-  track: function(experimentId, variationId) {
-
-   analytics.track("Experiment Viewed", {
-
-     experimentId,
-
-    variationId
-
-  })
-
-  }
-
-}
+ window.VISUAL_EDITOR_CONFIG = {
+      experimentId: '85',
+      apiKey: 'a3d988fcfbe0f0274052015b6f1bfa78d668b266b6900fd22ed684b91e732d82'
+ }
+ (()=>{
+fetch("http://34.111.239.29:80/auth/gateway/public/v1/init", {
+    method: 'post',
+    headers: {
+        "apiKey": window.VISUAL_EDITOR_CONFIG.apiKey
+    },
+    body: {
+            "pageUrl": "http://www.abc.com?heklslsll=djds",
+            "identifier": "342f8ccf1490866c09deb3af921f73be32392450c20ec8b573c629aeb391c193",
+            "source": 1,
+            "initAttributes": {
+                "url": "",
+                "osType": 1,
+                "browserType": 1,
+                "deviceType": 1,
+                "deviceHash": "hjyhghhfdsdfghgfdsfghjgfdsasfghj",
+                "hardwareConcurrency": 4,
+                "navigatorPlatform": 1,
+                "userAgent": null
+            }
+       }
+    })
+    .then(function (data) {
+    	console.log(data)
+    })
+ })();
               
-</script> -->
+</script>
      
 
 <script>
