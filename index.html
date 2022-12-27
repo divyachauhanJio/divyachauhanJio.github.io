@@ -50,12 +50,13 @@ window.GROWTHBOOK_CONFIG = {
 <script async src="https://cdn.growthbook.io/js/prod_Io2mm4g7XE2TvMwzSKvKhHAiWhUlG9wNZokFoeBhPs.js"></script> -->
 
 <script>
-
  window.VISUAL_EDITOR_CONFIG = {
       experimentId: '85',
       apiKey: 'a3d988fcfbe0f0274052015b6f1bfa78d668b266b6900fd22ed684b91e732d82'
  }
- (()=>{
+
+function runEx() {
+console.log('asdasd')
 fetch("http://34.111.239.29:80/auth/gateway/public/v1/init", {
     method: 'post',
     headers: {
@@ -79,8 +80,10 @@ fetch("http://34.111.239.29:80/auth/gateway/public/v1/init", {
     })
     .then(function (data) {
     	console.log(data)
-    })
- })();
+    }) 
+}
+
+runEx();
               
 </script>
      
