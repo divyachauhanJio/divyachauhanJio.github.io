@@ -57,12 +57,14 @@ window.GROWTHBOOK_CONFIG = {
 window.ENVIRONMENT_CONFIG = {
     apiKey: '3200037ff86916ad22646ac28e59201639559e2f921f2f3c1c9072d71dda1406',
 }
-if(location.search.match(/\bgrowthbookVisualDesigner\b/)){
+(() => { 
+      if(location.search.match(/\bgrowthbookVisualDesigner\b/)){
             window.EXP_PLATFORM_ORIGIN="http://localhost:3001";
             const s=document.createElement("script");
             s.async=true;s.src="https://unpkg.com/ab-designer@0.6.0/dist/ab-designer.umd.production.min.js";
             document.head.appendChild(s);
- }
+        }
+})();
 </script>
 <script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1673276688/script_arb8wp.js"></script>
 <!--     
