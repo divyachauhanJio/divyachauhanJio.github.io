@@ -33,54 +33,25 @@
       }
       
       </style>
-<!-- <script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1671986444/javascript_yq1he7.js"></script> -->
-<!-- <script>
-window.GROWTHBOOK_CONFIG = {
-  // Optional logged-in user id
-  userId: "123",
-  // Impression tracking callback (e.g. Segment, Mixpanel, GA)
-  track: function(experimentId, variationId) {
-    analytics.track("Experiment Viewed", {
-      experimentId,
-      variationId
-    })
-  }
+
+<script>
+(() => {
+		window.EXP_PLATFORM_ORIGIN = "*";
+		const s = document.createElement("script");
+		s.async = true;
+		s.src = "https://unpkg.com/ab-designer@0.6.0/dist/ab-designer.umd.production.min.js";
+		document.head.appendChild(s);
+		return
+})();
+</script>
+<script>
+window.ENVIRONMENT_CONFIG = {
+    apiKey: "3200037ff86916ad22646ac28e59201639559e2f921f2f3c1c9072d71dda1406",
 }
 </script>
-<script async src="https://cdn.growthbook.io/js/prod_Io2mm4g7XE2TvMwzSKvKhHAiWhUlG9wNZokFoeBhPs.js"></script> -->
-      <script>
-      (() => {
-                  window.EXP_PLATFORM_ORIGIN = "*";
-                  const s = document.createElement("script");
-                  s.async = true;
-                  s.src = "https://unpkg.com/ab-designer@0.6.0/dist/ab-designer.umd.production.min.js";
-                  document.head.appendChild(s);
-                  return
-      })();
-      </script>
-    <script>
-        window.ENVIRONMENT_CONFIG = {
-            apiKey: '3200037ff86916ad22646ac28e59201639559e2f921f2f3c1c9072d71dda1406',
-        }
-    </script>
-    
-    <script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1673504662/script_rd2tiq.js"></script>
-<!--     
-      <script>
-window.GROWTHBOOK_CONFIG = {
-  // Optional logged-in user id
-  userId: "123",
-  // Impression tracking callback (e.g. Segment, Mixpanel, GA)
-  track: function(experimentId, variationId) {
-    analytics.track("Experiment Viewed", {
-      experimentId,
-      variationId
-    })
-  }
-}
 </script>
-       -->
-<!--  <script async src="https://cdn.growthbook.io/js/prod_Io2mm4g7XE2TvMwzSKvKhHAiWhUlG9wNZokFoeBhPs.js"></script>  -->
+<script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1673613732/script_abtesting.js"></script>
+
     </head>
   
   
