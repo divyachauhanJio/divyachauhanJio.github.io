@@ -42,7 +42,7 @@
 (() => {
 		window.addEventListener("message",(function(e) { 
 			console.log(e.data);
-			if(e.data == 'loadedFromIframe') {
+			if(e.data.command == 'loadedFromIframe') {
 			    window.loadedFromIframe = true;
 			}
 		}));
