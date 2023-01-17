@@ -45,7 +45,7 @@
 		s.async = true;
 		s.src = "https://unpkg.com/ab-designer@0.6.0/dist/ab-designer.umd.production.min.js";
 		document.head.appendChild(s);
-            window.parent.postMessage("APIKEY",window.ENVIRONMENT_CONFIG.apiKey)
+            window.parent.postMessage(window.ENVIRONMENT_CONFIG.apiKey,'*')
 		return
 })();
 </script>
