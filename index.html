@@ -40,6 +40,10 @@
 </script>
 <script>
 (() => {
+		window.addEventListener("message",(function(e) { 
+			console.log(e);
+
+		}));
 		window.EXP_PLATFORM_ORIGIN = "*";
 		const s = document.createElement("script");
 		s.async = true;
