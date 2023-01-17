@@ -42,7 +42,9 @@
 (() => {
 		window.addEventListener("message",(function(e) { 
 			console.log(e.data);
-
+			if(e.data == 'loadedFromIframe') {
+			    window.loadedFromIframe = true;
+			}
 		}));
 		window.EXP_PLATFORM_ORIGIN = "*";
 		const s = document.createElement("script");
@@ -53,8 +55,8 @@
 		return
 })();
 </script>
-</script>
-<script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1673948003/script_abtesting_latest.js"></script>
+</script>`
+<script src="https://res.cloudinary.com/dytc8qjjz/raw/upload/v1673958975/script_abtesting_mbj7tp.js"></script>
 
     </head>
   
