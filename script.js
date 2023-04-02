@@ -636,7 +636,7 @@
     let image = "";
     console.log("e=",e);
     
-    htmlToImage.toPng(e.parentNode ? e.parentNode : e)
+    htmlToImage.toPng(".deliver-to")
   .then(function (dataUrl) {
     console.log(dataUrl);
     download(dataUrl, 'my-node.png');
