@@ -635,6 +635,12 @@
     
     let image = "";
     console.log("e=",e);
+    require('html-to-image').toPng(document.getElementById('my-node'))
+  .then(function (dataUrl) {
+    console.log(dataUrl);
+    download(dataUrl, 'my-node.png');
+  });
+
     html2canvas(e, { allowTaint: true, useCORS: true,}).then(function (canvas) {
       console.log(canvas);
     
@@ -803,27 +809,65 @@
                           return i;
                         });
                     } else if ("class" === o) {
+                      
                       if ("append" === r)
                         return I(n, function (e) {
+                          console.log(e);
+                          require('html-to-image').toPng(document.getElementById('my-node'))
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+                       
                           return e.add(i);
                         });
                       if ("remove" === r)
                         return I(n, function (e) {
+                          console.log(e);
+                          require('html-to-image').toPng(document.getElementById('my-node'))
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+                       
                           return e.delete(i);
                         });
                       if ("set" === r)
                         return I(n, function (e) {
+                          console.log(e);
+                          require('html-to-image').toPng(document.getElementById('my-node'))
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+                       
                           e.clear(), e.add(i);
                         });
                     } else {
-                      if ("append" === r)
+                      if ("append" === r){
+                      console.log(e);
+                      require('html-to-image').toPng(document.getElementById('my-node'))
+                      .then(function (dataUrl) {
+                        console.log(dataUrl);
+                        download(dataUrl, 'my-node.png');
+                      });
+                   
                         return D(n, o, function (e) {
                           return e + i;
                         });
-                      if ("set" === r)
+                      }
+                      if ("set" === r){
+                        console.log(e);
+                        require('html-to-image').toPng(document.getElementById('my-node'))
+                        .then(function (dataUrl) {
+                          console.log(dataUrl);
+                          download(dataUrl, 'my-node.png');
+                        });
+                     
                         return D(n, o, function () {
                           return i;
                         });
+                      }
                     }
                     return t;
                   })(e);
@@ -846,6 +890,13 @@
             ? Ae()
             : "selectElement" === r.command
             ? (function (e, t) {
+              console.log(e);
+              require('html-to-image').toPng(document.getElementById('my-node'))
+              .then(function (dataUrl) {
+                console.log(dataUrl);
+                download(dataUrl, 'my-node.png');
+              });
+           
                 void 0 === t && (t = 0);
                 var n = oe(e, t);
                 n ? pe(n, e) : ye();
