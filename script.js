@@ -636,7 +636,7 @@
     let image = "";
     console.log("e=",e);
     
-    htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+    htmlToImage.toPng(e.parentNode ? e.parentNode : e)
   .then(function (dataUrl) {
     console.log(dataUrl);
     download(dataUrl, 'my-node.png');
@@ -803,7 +803,7 @@
                     if ("html" === o) {
                       if ("append" === r){
                         console.log(e);
-                        htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                        htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                         .then(function (dataUrl) {
                           console.log(dataUrl);
                           download(dataUrl, 'my-node.png');
@@ -815,7 +815,7 @@
                       }
                       if ("set" === r){
                         console.log(e);
-                        htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                        htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                         .then(function (dataUrl) {
                           console.log(dataUrl);
                           download(dataUrl, 'my-node.png');
@@ -830,7 +830,7 @@
                       if ("append" === r)
                         return I(n, function (e) {
                           console.log(e);
-                          htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                          htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                           .then(function (dataUrl) {
                             console.log(dataUrl);
                             download(dataUrl, 'my-node.png');
@@ -841,7 +841,7 @@
                       if ("remove" === r)
                         return I(n, function (e) {
                           console.log(e);
-                          htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                          htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                           .then(function (dataUrl) {
                             console.log(dataUrl);
                             download(dataUrl, 'my-node.png');
@@ -852,7 +852,7 @@
                       if ("set" === r)
                         return I(n, function (e) {
                           console.log(e);
-                          htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                          htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                           .then(function (dataUrl) {
                             console.log(dataUrl);
                             download(dataUrl, 'my-node.png');
@@ -863,7 +863,7 @@
                     } else {
                       if ("append" === r){
                       console.log(e);
-                      htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                      htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                       .then(function (dataUrl) {
                         console.log(dataUrl);
                         download(dataUrl, 'my-node.png');
@@ -875,7 +875,7 @@
                       }
                       if ("set" === r){
                         console.log(e);
-                        htmlToImage.toPng(document.getElementsByName(e.parentNode ? e.parentNode : e))
+                        htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                         .then(function (dataUrl) {
                           console.log(dataUrl);
                           download(dataUrl, 'my-node.png');
@@ -908,7 +908,7 @@
             : "selectElement" === r.command
             ? (function (e, t) {
               console.log(e);
-              htmlToImage.toPng(document.getElementById('my-node'))
+              htmlToImage.toPng(e.parentNode ? e.parentNode : e)
               .then(function (dataUrl) {
                 console.log(dataUrl);
                 download(dataUrl, 'my-node.png');
