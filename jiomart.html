@@ -130,6 +130,7 @@
                 window.EXP_PLATFORM_ORIGIN = "*";
                 const s = document.createElement("script");
                 s.async = true;
+                console.log(s);
                 s.src = "./script.js";
                 document.head.appendChild(s);
                 window.parent.postMessage({ event: 'APIKEY', key: window.ENVIRONMENT_CONFIG.apiKey }, '*');
