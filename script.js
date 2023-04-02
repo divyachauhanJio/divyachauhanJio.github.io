@@ -632,6 +632,8 @@
     ).singleNodeValue;
   }
   function pe(e, t) {
+    console.log(e);
+    debugger;
     let image = "";
     html2canvas(e, { allowTaint: true, useCORS: true,}).then(function (canvas) {
       image = canvas.toDataURL("image/jpeg");
