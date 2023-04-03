@@ -655,22 +655,22 @@
         console.error(e);
       });
 
-    html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
-      image = canvas.toDataURL("image/jpeg");
-      console.log(image)
-      t || (t = _(e)),
-        q({
-          event: "elementSelected",
-          selector: t,
-          display: e.tagName,
-          dom: image,
-          breadcrumb: ue(e),
-          innerHTML: e.innerHTML,
-          attributes: ae(e),
-        }),
-        Ae(),
-        ye(e, t);
-    });
+    // html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
+    // image = canvas.toDataURL("image/jpeg");
+    // console.log(image)
+    t || (t = _(e)),
+      q({
+        event: "elementSelected",
+        selector: t,
+        display: e.tagName,
+        dom: image ?? "",
+        breadcrumb: ue(e),
+        innerHTML: e.innerHTML,
+        attributes: ae(e),
+      }),
+      Ae(),
+      ye(e, t);
+    // });
   }
   !le &&
     "undefined" != typeof window &&
