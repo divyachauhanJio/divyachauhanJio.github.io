@@ -641,6 +641,8 @@
     console.log(dataUrl);
     
     download(dataUrl, 'my-node.png');
+  }).catch((e)=>{
+    console.error(e);
   });
 
   htmlToImage.toPng(e.parentElement)
@@ -648,6 +650,8 @@
     console.log(dataUrl);
     
     download(dataUrl, 'my-node.png');
+  }).catch((e)=>{
+    console.error(e);
   });
 
   htmlToImage.toPng(e.parentNode)
@@ -655,6 +659,8 @@
     console.log(dataUrl);
     
     download(dataUrl, 'my-node.png');
+  }).catch((e)=>{
+    console.error(e);
   });
 
     html2canvas(e, { allowTaint: true, useCORS: true,}).then(function (canvas) {
