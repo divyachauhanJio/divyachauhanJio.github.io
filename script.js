@@ -1,3 +1,5 @@
+import { domToImage } from "modern-screenshot/index";
+
 !(function (e) {
   "function" == typeof define && define.amd ? define(e) : e();
 })(function () {
@@ -669,8 +671,8 @@
     let image = "";
     console.log("e=", e);
 
-    modernScreenshots.toPng(e)
-      .then(image => download(image))
+    domToImage.toPng(e)
+      .then(image => download(image, "modern.png"))
       .catch(error => console.log(error));
 
     htmlToImage.toPng(e)
