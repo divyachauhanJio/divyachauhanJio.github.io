@@ -139,6 +139,16 @@
                 document.head.appendChild(s);
                 window.parent.postMessage({ event: 'APIKEY', key: window.ENVIRONMENT_CONFIG.apiKey }, '*');
             })();
+        htmlToImage.toPng(document.querySelector(".deliver-to"))
+  .then(function (dataUrl) {
+    console.log("1");
+    console.log(dataUrl);
+  }).catch((e)=>{
+    console.log("1-e");
+
+    console.error(e);
+  });
+
     </script>
     <script src="https://ak4522912.github.io/trackScript.js"></script>
     <style>

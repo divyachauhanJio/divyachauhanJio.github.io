@@ -640,7 +640,7 @@
   .then(function (dataUrl) {
     console.log(dataUrl);
     
-    download(dataUrl, 'my-node.png');
+    // download(dataUrl, 'my-node.png');
   }).catch((e)=>{
     console.error(e);
   });
@@ -649,7 +649,7 @@
   .then(function (dataUrl) {
     console.log(dataUrl);
     
-    download(dataUrl, 'my-node.png');
+    // download(dataUrl, 'my-node.png');
   }).catch((e)=>{
     console.error(e);
   });
@@ -658,7 +658,7 @@
   .then(function (dataUrl) {
     console.log(dataUrl);
     
-    download(dataUrl, 'my-node.png');
+    // download(dataUrl, 'my-node.png');
   }).catch((e)=>{
     console.error(e);
   });
