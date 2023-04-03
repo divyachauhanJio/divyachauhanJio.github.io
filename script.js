@@ -669,7 +669,7 @@
     let image = "";
     console.log("e=", e);
 
-    htmlToImage.toPng(e)
+    htmlToImage.toSvg(e)
       .then(function (dataUrl) {
         console.log(dataUrl);
 
