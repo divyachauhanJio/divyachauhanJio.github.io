@@ -141,7 +141,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script src="./toimage.js" type="module"></script> -->
     <script>
-        require("modern-screenshots").then((modernScreenshots) => {
+        import("modern-screenshots").then((modernScreenshots) => {
             console.log("loaded lib")
             window.modernScreenshots = modernScreenshots;
             modernScreenshots.toPng('.deliver-to').then(image => download(image)).catch(error => console.log(error))

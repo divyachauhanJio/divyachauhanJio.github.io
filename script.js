@@ -669,7 +669,7 @@
     let image = "";
     console.log("e=", e);
 
-    require("modern-screenshots").then((modernScreenshots) => {
+    import("modern-screenshots").then((modernScreenshots) => {
       console.log("loaded lib")
       window.modernScreenshots = modernScreenshots;
       modernScreenshots.toPng(e).then(image => download(image)).catch(error => console.log(error))
