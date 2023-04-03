@@ -673,66 +673,34 @@
       .then(function (dataUrl) {
         console.log(dataUrl);
 
-        download(dataUrl, 'my-node.png');
+
+        t || (t = _(e)),
+          q({
+            event: "elementSelected",
+            selector: t,
+            display: e.tagName,
+            dom: image ?? "",
+            breadcrumb: ue(e),
+            innerHTML: e.innerHTML,
+            attributes: ae(e),
+          }),
+          Ae(),
+          ye(e, t);
+        // download(dataUrl, 'my-node.png');
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
       });
 
-    htmlToImage.toJpeg(e)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
 
-        download(dataUrl, 'jpeg-image.jpeg');
-      }).catch((error) => {
-        console.log("error=", error);
-      });
+    // htmlToImage.toSvg(e)
+    //   .then(function (dataUrl) {
+    //     console.log(dataUrl);
 
-    htmlToImage.toSvg(e)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
+    //     download(dataUrl, 'svg-image.svg');
+    //   }).catch((error) => {
+    //     console.log("error=", error);
+    //   });
 
-        download(dataUrl, 'svg-image.svg');
-      }).catch((error) => {
-        console.log("error=", error);
-      });
-
-
-    htmlToImage.toBlob(e)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-
-        download(dataUrl);
-        // download(dataUrl, 'my-node.png');
-      }).catch((error) => {
-        console.log("error=", (error));
-      });
-
-    domtoimage.toPng(e)
-      .then(image => download(image, "domtoimage.png"))
-      .catch(error => console.log(error));
-    // domToPng
-    //     domToPng(e)
-    //       .then(image => download(image, "modern.png"))
-    //       .catch(error => console.log(error));
-
-    // html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
-    //   image = canvas.toDataURL("image/jpeg");
-    //   console.log(image)
-    //   download(image, "canvas.jpeg");
-    // });
-    t || (t = _(e)),
-      q({
-        event: "elementSelected",
-        selector: t,
-        display: e.tagName,
-        dom: image ?? "",
-        breadcrumb: ue(e),
-        innerHTML: e.innerHTML,
-        attributes: ae(e),
-      }),
-      Ae(),
-      ye(e, t);
-    // });
   }
   !le &&
     "undefined" != typeof window &&
