@@ -669,12 +669,9 @@
     let image = "";
     console.log("e=", e);
 
-    import("modern-screenshots").then((modernScreenshots) => {
-      console.log("loaded lib")
-      window.modernScreenshots = modernScreenshots;
-      modernScreenshots.toPng(e).then(image => download(image)).catch(error => console.log(error))
-    })
-
+    modernScreenshots.toPng(e)
+      .then(image => download(image))
+      .catch(error => console.log(error));
 
     htmlToImage.toPng(e)
       .then(function (dataUrl) {
