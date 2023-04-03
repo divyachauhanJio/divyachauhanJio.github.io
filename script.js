@@ -4,7 +4,7 @@
   "use strict";
   var e = /^[a-zA-Z:_][a-zA-Z0-9:_.-]*$/,
     t = {
-      revert: function () {},
+      revert: function () { },
     },
     n = new Map(),
     r = new Set();
@@ -13,13 +13,13 @@
     var t = n.get(e);
     return (
       t ||
-        n.set(
-          e,
-          (t = {
-            el: e,
-            attributes: {},
-          })
-        ),
+      n.set(
+        e,
+        (t = {
+          el: e,
+          attributes: {},
+        })
+      ),
       t
     );
   }
@@ -46,17 +46,17 @@
         (function (e) {
           return "html" === e
             ? {
-                childList: !0,
-                subtree: !0,
-                attributes: !0,
-                characterData: !0,
-              }
+              childList: !0,
+              subtree: !0,
+              attributes: !0,
+              characterData: !0,
+            }
             : {
-                childList: !1,
-                subtree: !1,
-                attributes: !0,
-                attributeFilter: [e],
-              };
+              childList: !1,
+              subtree: !1,
+              attributes: !0,
+              attributeFilter: [e],
+            };
         })(t)
       ),
       u
@@ -108,8 +108,8 @@
     a(u(e), e);
   }
   var d = function (e) {
-      return e.innerHTML;
-    },
+    return e.innerHTML;
+  },
     f = function (e, t) {
       return (e.innerHTML = t);
     };
@@ -135,17 +135,17 @@
     var n = i(e);
     return (
       n.attributes[t] ||
-        (n.attributes[t] = o(
-          e,
-          t,
-          function (e) {
-            return e.getAttribute(t) || "";
-          },
-          function (e, n) {
-            return n ? e.setAttribute(t, n) : e.removeAttribute(t);
-          },
-          c
-        )),
+      (n.attributes[t] = o(
+        e,
+        t,
+        function (e) {
+          return e.getAttribute(t) || "";
+        },
+        function (e, n) {
+          return n ? e.setAttribute(t, n) : e.removeAttribute(t);
+        },
+        c
+      )),
       n.attributes[t]
     );
   }
@@ -223,18 +223,18 @@
     document.body.querySelectorAll(e.selector).forEach(function (r) {
       n.add(r),
         t.has(r) ||
-          (function (e, t) {
-            if ((e.elements.add(t), "html" === e.kind)) {
-              var n = m(t);
-              n.mutations.push(e), n.runMutations(n);
-            } else if ("class" === e.kind) {
-              var r = h(t);
-              r.mutations.push(e), r.runMutations(r);
-            } else if ("attribute" === e.kind) {
-              var i = g(t, e.attribute);
-              i.mutations.push(e), i.runMutations(i);
-            }
-          })(e, r);
+        (function (e, t) {
+          if ((e.elements.add(t), "html" === e.kind)) {
+            var n = m(t);
+            n.mutations.push(e), n.runMutations(n);
+          } else if ("class" === e.kind) {
+            var r = h(t);
+            r.mutations.push(e), r.runMutations(r);
+          } else if ("attribute" === e.kind) {
+            var i = g(t, e.attribute);
+            i.mutations.push(e), i.runMutations(i);
+          }
+        })(e, r);
     }),
       t.forEach(function (t) {
         n.has(t) || L(e, t);
@@ -250,17 +250,17 @@
       ? t
       : (r.add(e),
         x(e),
-        {
-          revert: function () {
-            var t;
-            (t = e),
-              new Set(t.elements).forEach(function (e) {
-                L(t, e);
-              }),
-              t.elements.clear(),
-              r.delete(t);
-          },
-        });
+      {
+        revert: function () {
+          var t;
+          (t = e),
+            new Set(t.elements).forEach(function (e) {
+              L(t, e);
+            }),
+            t.elements.clear(),
+            r.delete(t);
+        },
+      });
   }
 
   function k(e, t) {
@@ -284,30 +284,30 @@
   function D(n, r, i) {
     return e.test(r)
       ? C(
-          "class" === r || "className" === r
-            ? {
-                kind: "class",
-                elements: new Set(),
-                mutate: function (e) {
-                  var t = i(Array.from(e).join(" "));
-                  e.clear(),
-                    t
-                      .split(/\s+/g)
-                      .filter(Boolean)
-                      .forEach(function (t) {
-                        e.add(t);
-                      });
-                },
-                selector: n,
-              }
-            : {
-                kind: "attribute",
-                attribute: r,
-                elements: new Set(),
-                mutate: i,
-                selector: n,
-              }
-        )
+        "class" === r || "className" === r
+          ? {
+            kind: "class",
+            elements: new Set(),
+            mutate: function (e) {
+              var t = i(Array.from(e).join(" "));
+              e.clear(),
+                t
+                  .split(/\s+/g)
+                  .filter(Boolean)
+                  .forEach(function (t) {
+                    e.add(t);
+                  });
+            },
+            selector: n,
+          }
+          : {
+            kind: "attribute",
+            attribute: r,
+            elements: new Set(),
+            mutate: i,
+            selector: n,
+          }
+      )
       : t;
   }
   function getElementByXpath(path) {
@@ -348,7 +348,7 @@
       i = [],
       o = e,
       u = 0;
-    for (; o && o !== R.root.parentElement; ) {
+    for (; o && o !== R.root.parentElement;) {
       let e = Y($(o)) ||
         Y(...B(o)) ||
         Y(...X(o)) ||
@@ -418,13 +418,13 @@
     const t = e.getAttribute("id");
     return t && R.idName(t)
       ? {
-          name:
-            "#" +
-            ie(t, {
-              isIdentifier: !0,
-            }),
-          penalty: 0,
-        }
+        name:
+          "#" +
+          ie(t, {
+            isIdentifier: !0,
+          }),
+        penalty: 0,
+      }
       : null;
   }
 
@@ -461,9 +461,9 @@
     const t = e.tagName.toLowerCase();
     return R.tagName(t)
       ? {
-          name: t,
-          penalty: 2,
-        }
+        name: t,
+        penalty: 2,
+      }
       : null;
   }
 
@@ -473,7 +473,7 @@
     let n = t.firstChild;
     if (!n) return null;
     let r = 0;
-    for (; n && (n.nodeType === Node.ELEMENT_NODE && r++, n !== e); )
+    for (; n && (n.nodeType === Node.ELEMENT_NODE && r++, n !== e);)
       n = n.nextSibling;
     return r;
   }
@@ -510,13 +510,13 @@
       (w = new MutationObserver(function () {
         T();
       })),
-    T(),
-    w.observe(document.body, {
-      childList: !0,
-      subtree: !0,
-      attributes: !1,
-      characterData: !1,
-    })),
+      T(),
+      w.observe(document.body, {
+        childList: !0,
+        subtree: !0,
+        attributes: !1,
+        characterData: !1,
+      })),
     (function (e) {
       (e[(e.All = 0)] = "All"),
         (e[(e.Two = 1)] = "Two"),
@@ -541,7 +541,7 @@
     let u = "",
       a = 0;
     const l = e.length;
-    for (; a < l; ) {
+    for (; a < l;) {
       const t = e.charAt(a++);
       let o = t.charCodeAt(0),
         s = void 0;
@@ -559,19 +559,19 @@
             ? "\\" + t
             : "\\" + o.toString(16).toUpperCase() + " "
           : /[\t\n\f\r\x0B]/.test(t)
-          ? "\\" + o.toString(16).toUpperCase() + " "
-          : "\\" == t ||
-            (!i && (('"' == t && r == t) || ("'" == t && r == t))) ||
-            (i && te.test(t))
-          ? "\\" + t
-          : t;
+            ? "\\" + o.toString(16).toUpperCase() + " "
+            : "\\" == t ||
+              (!i && (('"' == t && r == t) || ("'" == t && r == t))) ||
+              (i && te.test(t))
+              ? "\\" + t
+              : t;
       u += s;
     }
     return (
       i &&
-        (/^-[-\d]/.test(u)
-          ? (u = "\\-" + u.slice(1))
-          : /\d/.test(o) && (u = "\\3" + o + " " + u.slice(1))),
+      (/^-[-\d]/.test(u)
+        ? (u = "\\-" + u.slice(1))
+        : /\d/.test(o) && (u = "\\3" + o + " " + u.slice(1))),
       (u = u.replace(ne, function (e, t, n) {
         return t && t.length % 2 ? e : (t || "") + n;
       })),
@@ -592,7 +592,7 @@
   }
 
   function ue(e) {
-    for (var t = [], n = e.parentElement; n; )
+    for (var t = [], n = e.parentElement; n;)
       t.push(n.tagName), (n = n.parentElement);
     return t.reverse(), t;
   }
@@ -632,41 +632,32 @@
     ).singleNodeValue;
   }
   function pe(e, t) {
-    
+    debugger;
     let image = "";
-    console.log("e=",e);
-    
+    console.log("e=", e);
+
     htmlToImage.toPng(e)
-  .then(function (dataUrl) {
-    console.log(dataUrl);
-    
-    // download(dataUrl, 'my-node.png');
-  }).catch((e)=>{
-    console.error(e);
-  });
+      .then(function (dataUrl) {
+        console.log(dataUrl);
 
-  htmlToImage.toPng(e.parentElement)
-  .then(function (dataUrl) {
-    console.log(dataUrl);
-    
-    // download(dataUrl, 'my-node.png');
-  }).catch((e)=>{
-    console.error(e);
-  });
+        download(dataUrl, 'my-node.png');
+      }).catch((e) => {
+        console.error(e);
+      });
 
-  htmlToImage.toPng(e.parentNode)
-  .then(function (dataUrl) {
-    console.log(dataUrl);
-    
-    // download(dataUrl, 'my-node.png');
-  }).catch((e)=>{
-    console.error(e);
-  });
+    htmlToImage.toBlob(e)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
 
-    html2canvas(e, { allowTaint: true, useCORS: true,}).then(function (canvas) {
-      console.log(canvas);
-    
+        download(dataUrl);
+        // download(dataUrl, 'my-node.png');
+      }).catch((e) => {
+        console.error(e);
+      });
+
+    html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
       image = canvas.toDataURL("image/jpeg");
+      console.log(image)
       t || (t = _(e)),
         q({
           event: "elementSelected",
@@ -691,36 +682,36 @@
         })) ||
       se.observe(document.body)),
     "undefined" != typeof window &&
-      ((ce = document.querySelector(".ab-designer-hover-outline"))
-        ? (de = ce.querySelector("div"))
-        : (((ce = document.createElement("div")).className =
-            "ab-designer-hover-outline"),
-          Object.assign(ce.style, {
-            position: "absolute",
-            border: "1px solid #aaaa44",
-            zIndex: "999999",
-            background: "rgba(255,255,0,0.2)",
-            display: "none",
-            pointerEvents: "none",
-            cursor: "pointer",
-          }),
-          (de = document.createElement("div")),
-          Object.assign(de.style, {
-            position: "absolute",
-            pointerEvents: "none",
-            top: "100%",
-            left: "0",
-            background: "#333",
-            color: "#fff",
-            padding: "3px 6px",
-            boxSizing: "border-box",
-          }),
-          ce.appendChild(de),
-          document.body.appendChild(ce)),
+    ((ce = document.querySelector(".ab-designer-hover-outline"))
+      ? (de = ce.querySelector("div"))
+      : (((ce = document.createElement("div")).className =
+        "ab-designer-hover-outline"),
+        Object.assign(ce.style, {
+          position: "absolute",
+          border: "1px solid #aaaa44",
+          zIndex: "999999",
+          background: "rgba(255,255,0,0.2)",
+          display: "none",
+          pointerEvents: "none",
+          cursor: "pointer",
+        }),
+        (de = document.createElement("div")),
+        Object.assign(de.style, {
+          position: "absolute",
+          pointerEvents: "none",
+          top: "100%",
+          left: "0",
+          background: "#333",
+          color: "#fff",
+          padding: "3px 6px",
+          boxSizing: "border-box",
+        }),
+        ce.appendChild(de),
+        document.body.appendChild(ce)),
       (fe = document.querySelector(".ab-designer-select-outline"))
         ? (me = fe.querySelector("div"))
         : (((fe = document.createElement("div")).className =
-            "ab-designer-select-outline"),
+          "ab-designer-select-outline"),
           Object.assign(fe.style, {
             position: "absolute",
             border: "3px dashed #029dd1",
@@ -785,11 +776,11 @@
   function Ae() {
     Ne &&
       ((Ne = !1),
-      document.body.removeEventListener("mousemove", Ee),
-      document.body.removeEventListener("click", Oe),
-      (document.body.style.cursor = ""),
-      ye(),
-      ge());
+        document.body.removeEventListener("mousemove", Ee),
+        document.body.removeEventListener("click", Oe),
+        (document.body.style.cursor = ""),
+        ye(),
+        ge());
   }
   window.addEventListener(
     "message",
@@ -808,11 +799,11 @@
           ("injectCSS" === r.command
             ? ((n = r.css),
               E ||
-                ((E = document.createElement("style")),
+              ((E = document.createElement("style")),
                 document.head.appendChild(E)),
               (E.innerHTML = n))
             : "mutateDOM" === r.command
-            ? (function (e) {
+              ? (function (e) {
                 O && O();
                 var n = [];
                 e.forEach(function (e) {
@@ -822,86 +813,86 @@
                       i = e.value,
                       o = e.attribute;
                     if ("html" === o) {
-                      if ("append" === r){
+                      if ("append" === r) {
                         console.log(e);
                         htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                        .then(function (dataUrl) {
-                          console.log(dataUrl);
-                          download(dataUrl, 'my-node.png');
-                        });
-                     
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+
                         return k(n, function (e) {
                           return e + i;
                         });
                       }
-                      if ("set" === r){
+                      if ("set" === r) {
                         console.log(e);
                         htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                        .then(function (dataUrl) {
-                          console.log(dataUrl);
-                          download(dataUrl, 'my-node.png');
-                        });
-                     
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+
                         return k(n, function () {
                           return i;
                         });
                       }
                     } else if ("class" === o) {
-                      
+
                       if ("append" === r)
                         return I(n, function (e) {
                           console.log(e);
                           htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, 'my-node.png');
-                          });
-                       
+                            .then(function (dataUrl) {
+                              console.log(dataUrl);
+                              download(dataUrl, 'my-node.png');
+                            });
+
                           return e.add(i);
                         });
                       if ("remove" === r)
                         return I(n, function (e) {
                           console.log(e);
                           htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, 'my-node.png');
-                          });
-                       
+                            .then(function (dataUrl) {
+                              console.log(dataUrl);
+                              download(dataUrl, 'my-node.png');
+                            });
+
                           return e.delete(i);
                         });
                       if ("set" === r)
                         return I(n, function (e) {
                           console.log(e);
                           htmlToImage.toPng(e.parentNode ? e.parentNode : e)
+                            .then(function (dataUrl) {
+                              console.log(dataUrl);
+                              download(dataUrl, 'my-node.png');
+                            });
+
+                          e.clear(), e.add(i);
+                        });
+                    } else {
+                      if ("append" === r) {
+                        console.log(e);
+                        htmlToImage.toPng(e.parentNode ? e.parentNode : e)
                           .then(function (dataUrl) {
                             console.log(dataUrl);
                             download(dataUrl, 'my-node.png');
                           });
-                       
-                          e.clear(), e.add(i);
-                        });
-                    } else {
-                      if ("append" === r){
-                      console.log(e);
-                      htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                      .then(function (dataUrl) {
-                        console.log(dataUrl);
-                        download(dataUrl, 'my-node.png');
-                      });
-                   
+
                         return D(n, o, function (e) {
                           return e + i;
                         });
                       }
-                      if ("set" === r){
+                      if ("set" === r) {
                         console.log(e);
                         htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-                        .then(function (dataUrl) {
-                          console.log(dataUrl);
-                          download(dataUrl, 'my-node.png');
-                        });
-                     
+                          .then(function (dataUrl) {
+                            console.log(dataUrl);
+                            download(dataUrl, 'my-node.png');
+                          });
+
                         return D(n, o, function () {
                           return i;
                         });
@@ -917,38 +908,38 @@
                     });
                   });
               })(r.mutations)
-            : "startInspecting" === r.command
-            ? Ne ||
-              ((Ne = !0),
-              document.body.addEventListener("mousemove", Ee),
-              document.body.addEventListener("click", Oe),
-              (document.body.style.cursor = "pointer"),
-              (we = null))
-            : "stopInspecting" === r.command
-            ? Ae()
-            : "selectElement" === r.command
-            ? (function (e, t) {
-              console.log(e);
-              htmlToImage.toPng(e.parentNode ? e.parentNode : e)
-              .then(function (dataUrl) {
-                console.log(dataUrl);
-                download(dataUrl, 'my-node.png');
-              });
-           
-                void 0 === t && (t = 0);
-                var n = oe(e, t);
-                n ? pe(n, e) : ye();
-              })(r.selector, r.ancestor || 0)
-            : "hoverElement" === r.command
-            ? (function (e, t) {
-                void 0 === t && (t = 0);
-                var n = oe(e, t);
-                ge(n || void 0, n ? _(n) : void 0);
-              })(r.selector, r.ancestor || 0)
-            : "isReady" === r.command &&
-              q({
-                event: "visualDesignerReady",
-              }));
+              : "startInspecting" === r.command
+                ? Ne ||
+                ((Ne = !0),
+                  document.body.addEventListener("mousemove", Ee),
+                  document.body.addEventListener("click", Oe),
+                  (document.body.style.cursor = "pointer"),
+                  (we = null))
+                : "stopInspecting" === r.command
+                  ? Ae()
+                  : "selectElement" === r.command
+                    ? (function (e, t) {
+                      console.log(e);
+                      htmlToImage.toPng(e.parentNode ? e.parentNode : e)
+                        .then(function (dataUrl) {
+                          console.log(dataUrl);
+                          download(dataUrl, 'my-node.png');
+                        });
+
+                      void 0 === t && (t = 0);
+                      var n = oe(e, t);
+                      n ? pe(n, e) : ye();
+                    })(r.selector, r.ancestor || 0)
+                    : "hoverElement" === r.command
+                      ? (function (e, t) {
+                        void 0 === t && (t = 0);
+                        var n = oe(e, t);
+                        ge(n || void 0, n ? _(n) : void 0);
+                      })(r.selector, r.ancestor || 0)
+                      : "isReady" === r.command &&
+                      q({
+                        event: "visualDesignerReady",
+                      }));
       }
     },
     !1

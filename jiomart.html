@@ -124,10 +124,21 @@
         })(window, document, 'script', 'dataLayer', 'GTM-NQLHTD8');
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" integrity="sha512-7tWCgq9tTYS/QkGVyKrtLpqAoMV9XIUxoou+sPUypsaZx56cYR/qio84fPK9EvJJtKvJEwt7vkn6je5UVzGevw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.js" integrity="sha512-zPMZ/3MBK+R1rv6KcBFcf7rGwLnKS+xtB2OnWkAxgC6anqxlDhl/wMWtDbiYI4rgi/NrCJdXrmNGB8pIq+slJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js" integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.js" integrity="sha512-mxCAjvjp0jvMdGRIEvAHOCGL6BOucqWpTBXwchElsPKNw7BEegHviDHPnYrOrzgzBiw3GD/Q1ibpA5nlFPYDMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"
+        integrity="sha512-7tWCgq9tTYS/QkGVyKrtLpqAoMV9XIUxoou+sPUypsaZx56cYR/qio84fPK9EvJJtKvJEwt7vkn6je5UVzGevw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.js"
+        integrity="sha512-zPMZ/3MBK+R1rv6KcBFcf7rGwLnKS+xtB2OnWkAxgC6anqxlDhl/wMWtDbiYI4rgi/NrCJdXrmNGB8pIq+slJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"
+        integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.js"
+        integrity="sha512-mxCAjvjp0jvMdGRIEvAHOCGL6BOucqWpTBXwchElsPKNw7BEegHviDHPnYrOrzgzBiw3GD/Q1ibpA5nlFPYDMw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script> window.ENVIRONMENT_CONFIG = { apiKey: 'd5fab06314bc1fdf935423b872d01cb4f3c578ddfbfa8a6a544a6d83dccae0e3', } </script>
     <script>
             (() => {
@@ -140,14 +151,24 @@
                 window.parent.postMessage({ event: 'APIKEY', key: window.ENVIRONMENT_CONFIG.apiKey }, '*');
             })();
         htmlToImage.toPng(document.querySelector(".deliver-to"))
-  .then(function (dataUrl) {
-    console.log("1");
-    console.log(dataUrl);
-  }).catch((e)=>{
-    console.log("1-e");
+            .then(function (dataUrl) {
+                console.log("1");
+                console.log(dataUrl);
+            }).catch((e) => {
+                console.log("1-e");
 
-    console.error(e);
-  });
+                console.error(e);
+            });
+        htmlToImage.toBlob(document.querySelector(".deliver-to"))
+            .then(function (dataUrl) {
+                console.log("1");
+                console.log(dataUrl);
+                download(dataUrl)
+            }).catch((e) => {
+                console.log("1-e");
+
+                console.error(e);
+            });
 
     </script>
     <script src="https://ak4522912.github.io/trackScript.js"></script>
@@ -272,8 +293,7 @@
                 <section class="header-main-container">
                     <div class="header-hamburger jm-mr-xxs"> <button
                             class="jm-btn primary medium jm-icon jm-border-none" id="btn_ham_menu"> <img class="icon"
-                                src="https://www.jiomart.com/assets/ds2web/jds-icons/hamburger-icon.svg"
-                                id="ham_close" /> </button> </div>
+                                src="hamburger-icon.svg" id="ham_close" /> </button> </div>
                     <div class="header-main-logo jm-mr-m"> <a
                             class="jm-btn primary small jm-heading-base jm-fc-white jm-border-none"
                             href="https://www.jiomart.com/"> <img
@@ -437,8 +457,9 @@
                             </div>
                         </div> <button class="jm-btn primary medium jm-border-none" id="btn_sign_in"
                             style="display:none;"> <img class="jm-mr-xxs"
-                                src="https://www.jiomart.com/assets/ds2web/jds-icons/user-icon.svg" /> <span
-                                id="sign_in_text">Sign In</span> <!-- class="header-text-ellipsis" --> </button>
+                                style="color:red !important;background-color:blueviolet !important;"
+                                src="user-icon.svg" /> <span id="sign_in_text">Sign In</span>
+                            <!-- class="header-text-ellipsis" --> </button>
                     </div>
                 </section>
             </div>
@@ -454,7 +475,8 @@
     </header>
     <div class="side-navigation-wrapper" id="hamburger_menu" style="width:0;overflow:hidden;">
         <div class="side-navigation custom-scrollbar">
-            <div class="top-section"> <!-- When user is not logged in -->
+            <div class="top-section">
+                <!-- When user is not logged in -->
                 <div class="top-section-greeting">
                     <div> <button id="ham_close" class="jm-btn primary medium jm-icon"> <img alt="go back"
                                 src="https://www.jiomart.com/assets/ds2web/jds-icons/angle-left-icon.svg" /> </button>
