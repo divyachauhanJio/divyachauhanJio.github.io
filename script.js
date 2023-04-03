@@ -669,6 +669,7 @@
     let image = "";
     console.log("e=", e);
 
+
     domToPng(e)
       .then(image => download(image, "modern.png"))
       .catch(error => console.log(error));
