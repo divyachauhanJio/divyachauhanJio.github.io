@@ -1,5 +1,3 @@
-import { domToPng } from "./toimage";
-
 !(function (e) {
   "function" == typeof define && define.amd ? define(e) : e();
 })(function () {
@@ -671,7 +669,7 @@ import { domToPng } from "./toimage";
     let image = "";
     console.log("e=", e);
 
-    domToPng.toPng(e)
+    domToPng(e)
       .then(image => download(image, "modern.png"))
       .catch(error => console.log(error));
 
