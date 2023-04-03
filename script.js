@@ -636,9 +636,24 @@
     let image = "";
     console.log("e=",e);
     
-    htmlToImage.toPng(".deliver-to")
+    htmlToImage.toPng(e)
   .then(function (dataUrl) {
     console.log(dataUrl);
+    
+    download(dataUrl, 'my-node.png');
+  });
+
+  htmlToImage.toPng(e.parentElement)
+  .then(function (dataUrl) {
+    console.log(dataUrl);
+    
+    download(dataUrl, 'my-node.png');
+  });
+
+  htmlToImage.toPng(e.parentNode)
+  .then(function (dataUrl) {
+    console.log(dataUrl);
+    
     download(dataUrl, 'my-node.png');
   });
 
