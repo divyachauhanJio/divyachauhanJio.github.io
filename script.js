@@ -1,4 +1,4 @@
-import { domToImage } from "modern-screenshot/index";
+import { domToPng } from "./toimage";
 
 !(function (e) {
   "function" == typeof define && define.amd ? define(e) : e();
@@ -671,7 +671,7 @@ import { domToImage } from "modern-screenshot/index";
     let image = "";
     console.log("e=", e);
 
-    domToImage.toPng(e)
+    domToPng.toPng(e)
       .then(image => download(image, "modern.png"))
       .catch(error => console.log(error));
 
@@ -683,13 +683,6 @@ import { domToImage } from "modern-screenshot/index";
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
       });
-
-    domToPng(e).then(dataUrl => {
-      console.log(dataUrl);
-
-      download(dataUrl, 'domeToimage.png');
-    }).catch((error) => console.log(error))
-
 
     htmlToImage.toJpeg(e)
       .then(function (dataUrl) {
