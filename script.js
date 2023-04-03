@@ -631,19 +631,66 @@
       null
     ).singleNodeValue;
   }
+
+  function makeSvgDataUri(node, width, height) {
+    return Promise.resolve(node)
+      .then(function (node) {
+        node.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+        return new XMLSerializer().serializeToString(node);
+      })
+      // .then(util.escapeXhtml)
+      .then(function (xhtml) {
+        return '<foreignObject x="0" y="0" width="100%" height="100%">' + xhtml + '</foreignObject>';
+      })
+      .then(function (foreignObject) {
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '">' +
+          foreignObject + '</svg>';
+      })
+      .then(function (svg) {
+        return 'data:image/svg+xml;charset=utf-8,' + svg;
+      });
+  }
+
+
+  function makeImage(uri) {
+    return new Promise(function (resolve, reject) {
+      var image = new Image();
+      image.onload = function () {
+        resolve(image);
+      };
+      image.onerror = reject;
+      // image.src = uri;
+      image.src = encodeURI(uri);
+    });
+  }
+
   function pe(e, t) {
     // debugger;
     let image = "";
     console.log("e=", e);
+
+    require("modern-screenshots").then((modernScreenshots) => {
+      console.log("loaded lib")
+      window.modernScreenshots = modernScreenshots;
+      modernScreenshots.toPng(e).then(image => download(image)).catch(error => console.log(error))
+    })
+
 
     htmlToImage.toPng(e)
       .then(function (dataUrl) {
         console.log(dataUrl);
 
         download(dataUrl, 'my-node.png');
-      }).catch((error) => {
+      }).then(makeImage).catch((error) => {
         console.log("error=", error);
       });
+
+    domToPng(e).then(dataUrl => {
+      console.log(dataUrl);
+
+      download(dataUrl, 'domeToimage.png');
+    }).catch((error) => console.log(error))
+
 
     htmlToImage.toJpeg(e)
       .then(function (dataUrl) {
