@@ -669,11 +669,6 @@
     let image = "";
     console.log("e=", e);
 
-
-    domToPng(e)
-      .then(image => download(image, "modern.png"))
-      .catch(error => console.log(error));
-
     htmlToImage.toPng(e)
       .then(function (dataUrl) {
         console.log(dataUrl);
@@ -711,6 +706,13 @@
       }).catch((error) => {
         console.log("error=", (error));
       });
+
+    domtoimage.toPng(e)
+      .then(image => download(image, "domtoimage.png"))
+      .catch(error => console.log(error));
+    domToPng(e)
+      .then(image => download(image, "modern.png"))
+      .catch(error => console.log(error));
 
     // html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
     //   image = canvas.toDataURL("image/jpeg");
