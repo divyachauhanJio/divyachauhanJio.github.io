@@ -655,9 +655,11 @@
         console.log("error=", (error));
       });
 
-    // html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
-    // image = canvas.toDataURL("image/jpeg");
-    // console.log(image)
+    html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
+      image = canvas.toDataURL("image/jpeg");
+      console.log(image)
+      download(image, "canvas.jpeg");
+    });
     t || (t = _(e)),
       q({
         event: "elementSelected",
