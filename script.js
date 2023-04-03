@@ -645,6 +645,25 @@
         console.log("error=", error);
       });
 
+    htmlToImage.toJpeg(e)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+
+        download(dataUrl, 'jpeg-image.jpeg');
+      }).catch((error) => {
+        console.log("error=", error);
+      });
+
+    htmlToImage.toSvg(e)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+
+        download(dataUrl, 'svg-image.svg');
+      }).catch((error) => {
+        console.log("error=", error);
+      });
+
+
     htmlToImage.toBlob(e)
       .then(function (dataUrl) {
         console.log(dataUrl);
