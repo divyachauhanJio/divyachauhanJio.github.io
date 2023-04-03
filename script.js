@@ -670,7 +670,7 @@
     console.log("e=", e);
 
     e.crossOrigin = 'anonymous';
-    htmlToImage.toSvg(e, { useCorsEverywhereProxy: true })
+    htmlToImage.toSvg(e, { useCorsEverywhereProxy: true, cacheBust: true })
       .then(function (dataUrl) {
         console.log(dataUrl);
 
