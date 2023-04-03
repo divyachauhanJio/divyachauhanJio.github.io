@@ -641,8 +641,8 @@
         console.log(dataUrl);
 
         download(dataUrl, 'my-node.png');
-      }).catch((e) => {
-        console.error(e);
+      }).catch((error) => {
+        console.log("error=", error);
       });
 
     htmlToImage.toBlob(e)
@@ -651,8 +651,8 @@
 
         download(dataUrl);
         // download(dataUrl, 'my-node.png');
-      }).catch((e) => {
-        console.error(e);
+      }).catch((error) => {
+        console.log("error=", (error));
       });
 
     // html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
