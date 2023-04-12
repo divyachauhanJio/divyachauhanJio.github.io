@@ -663,6 +663,9 @@
       image.src = encodeURI(uri);
     });
   }
+  function filter(node) {
+    return (node.tagName.toLowerCase() !== 'img');
+  }
 
   function pe(e, t) {
     // debugger;
@@ -670,7 +673,22 @@
     console.log("e=", e);
 
     e.crossOrigin = 'anonymous';
-    htmlToImage.toSvg(e, { useCorsEverywhereProxy: true, cacheBust: true })
+    let clonedNode = e.clonedNode();
+    // retrieve all <img> elements in the document,
+    // using document.querySelector(); then iterate
+    // over that NodeList using
+    // NodeList.prototype.forEach():
+    
+    clonedNode.querySelectorAll('img').forEach(
+
+      // 'el' is a reference to the current element of
+      // of the NodeList of elements; and here we use
+      // Node.replaceWith() to replace the current ('el')
+      // Node with a textNode, with the node-value set to
+      // the src of the element:
+      (el) => el.replaceWith(document.createTextNode(el.src))
+    );
+    htmlToImage.toSvg(clonedNode, { useCorsEverywhereProxy: true, cacheBust: true, filter: filter })
       .then(function (dataUrl) {
         console.log(dataUrl);
 
