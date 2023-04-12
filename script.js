@@ -676,7 +676,7 @@
     let duplicateNode = e.cloneNode(true);
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
-        el.replaceWith(document.createTextNode(el.src))
+        el=document.createTextNode(el.src);
         console.log(el)
       }
     );
