@@ -675,7 +675,10 @@
     e.crossOrigin = 'anonymous';
     const duplicateNode = e.cloneNode(true);
     duplicateNode.querySelectorAll('img').forEach(
-      (el) =>  el.replaceWith(document.createTextNode(`${el.src}_${el.alt}`))
+      (el) =>  {
+        const imageattr= document.createElement("span").innerHTML=`${el.src}_${el.alt}`;
+        el.replaceWith(imageattr)
+      }
     );
     htmlToImage.toSvg(duplicateNode)
       .then(function (dataUrl) {
