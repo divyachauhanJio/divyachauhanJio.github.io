@@ -668,10 +668,6 @@
   }
 
   function pe(e, t) {
-    // debugger;
-    let image = "";
-    console.log("e=", e);
-
     e.crossOrigin = 'anonymous';
     let duplicateNode=e;
 
@@ -693,7 +689,20 @@
     duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
 
     html2canvas(duplicateNode).then(function(canvas) {
-      download(canvas.toDataURL(), 'svg-image.png');
+      download(canvas.toDataURL(), 'canvas.png');
+  });
+
+  html2canvas(e).then(function(canvas) {
+    download(canvas.toDataURL(), 'e.png');
+});
+
+
+  htmlToImage.toJpeg(e)
+  .then(function (dataUrl) {
+    console.log(dataUrl);
+    download(dataUrl, 'e.jpeg');
+  }).then(makeImage).catch((error) => {
+    console.log("error=", error);
   });
 
     htmlToImage.toJpeg(duplicateNode)
@@ -704,21 +713,21 @@
         console.log("error=", error);
       });
       
-      htmlToImage.toSvg(duplicateNode)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'svg-image.svg');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+      // htmlToImage.toSvg(duplicateNode)
+      // .then(function (dataUrl) {
+      //   console.log(dataUrl);
+      //   download(dataUrl, 'svg-image.svg');
+      // }).then(makeImage).catch((error) => {
+      //   console.log("error=", error);
+      // });
 
-      htmlToImage.toPng(duplicateNode)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'svg-image.png');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+      // htmlToImage.toPng(duplicateNode)
+      // .then(function (dataUrl) {
+      //   console.log(dataUrl);
+      //   download(dataUrl, 'svg-image.png');
+      // }).then(makeImage).catch((error) => {
+      //   console.log("error=", error);
+      // });
 
       t || (t = _(e)),
       q({
