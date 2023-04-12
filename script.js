@@ -676,7 +676,7 @@
     
     htmlToImage.toSvg(e.cloneNode(true).querySelectorAll('img').forEach(
       (el) => el.replaceWith(document.createTextNode(el.src))
-    ), { useCorsEverywhereProxy: true, cacheBust: true, filter: filter })
+    ))
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
