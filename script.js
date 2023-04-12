@@ -674,7 +674,7 @@
 
     e.crossOrigin = 'anonymous';
     
-    htmlToImage.toSvg(e.clonedNode().querySelectorAll('img').forEach(
+    htmlToImage.toSvg(e.cloneNode().querySelectorAll('img').forEach(
       (el) => el.replaceWith(document.createTextNode(el.src))
     ), { useCorsEverywhereProxy: true, cacheBust: true, filter: filter })
       .then(function (dataUrl) {
