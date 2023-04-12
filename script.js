@@ -678,6 +678,7 @@
       (el) =>  {
         const imageattr= document.createElement("span").innerHTML=`${el.src}_${el.alt}`;
         el.replaceWith(imageattr)
+        console.log(el)
       }
     );
     htmlToImage.toSvg(duplicateNode)
