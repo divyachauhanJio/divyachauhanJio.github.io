@@ -681,7 +681,7 @@
       }
     );
     
-    htmlToImage.toJpeg(duplicateNode)
+    htmlToImage.toJpeg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.jpeg');
@@ -689,7 +689,7 @@
         console.log("error=", error);
       });
       
-      htmlToImage.toSvg(duplicateNode)
+      htmlToImage.toSvg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
@@ -697,7 +697,7 @@
         console.log("error=", error);
       });
 
-      htmlToImage.toPng(duplicateNode)
+      htmlToImage.toPng(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.png');
