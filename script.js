@@ -676,12 +676,18 @@
     const duplicateNode = e.cloneNode(true);
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
-        const imageattr= document.createElement("span").innerHTML=`${el.src}_${el.alt}`;
-        el.replaceWith(imageattr)
+        el.replaceWith(document.createTextNode(el.src))
         console.log(el)
       }
     );
-    htmlToImage.toSvg(duplicateNode)
+    htmlToImage.toJpeg(duplicateNode)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'svg-image.jpeg');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
+      htmlToImage.toSvg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
@@ -689,6 +695,13 @@
         console.log("error=", error);
       });
 
+      htmlToImage.toJpeg(duplicateNode)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'svg-image.png');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
 
       t || (t = _(e)),
       q({
