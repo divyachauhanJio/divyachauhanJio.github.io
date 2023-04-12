@@ -673,10 +673,11 @@
     console.log("e=", e);
 
     e.crossOrigin = 'anonymous';
-    
-    htmlToImage.toSvg(e.cloneNode(true).querySelectorAll('img').forEach(
+    const duplicateNode = e.cloneNode(true).querySelectorAll('img').forEach(
       (el) => el.replaceWith(document.createTextNode(el.src))
-    ))
+    );
+    console.log(duplicateNode)
+    htmlToImage.toSvg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
