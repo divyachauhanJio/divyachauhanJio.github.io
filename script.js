@@ -683,7 +683,8 @@
 
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
-        el.parentNode.appendChild(document.createTextNode(el.src));
+        const textSrc = document.createElement("span").innerHTML=el.src;
+        el.parentNode.appendChild(textSrc);
         console.log(el);
       }
     );
