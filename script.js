@@ -685,6 +685,10 @@
     e.crossOrigin = 'anonymous';
     let duplicateNode=e;
 
+    html2canvas(duplicateNode).then(function(canvas) {
+      download(canvas.toDataURL(), 'dup.png');
+  });  
+
     if(!e.childNodes.length) {
       duplicateNode = e.parentNode.cloneNode(true);
     } else {
