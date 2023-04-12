@@ -679,35 +679,24 @@
     ), { useCorsEverywhereProxy: true, cacheBust: true, filter: filter })
       .then(function (dataUrl) {
         console.log(dataUrl);
-
-
-        t || (t = _(e)),
-          q({
-            event: "elementSelected",
-            selector: t,
-            display: e.tagName,
-            dom: dataUrl ?? "",
-            breadcrumb: ue(e),
-            innerHTML: e.innerHTML,
-            attributes: ae(e),
-          }),
-          Ae(),
-          ye(e, t);
-        // download(dataUrl, 'my-node.png');
+        download(dataUrl, 'svg-image.svg');
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
       });
 
 
-    // htmlToImage.toSvg(e)
-    //   .then(function (dataUrl) {
-    //     console.log(dataUrl);
-
-    //     download(dataUrl, 'svg-image.svg');
-    //   }).catch((error) => {
-    //     console.log("error=", error);
-    //   });
-
+      t || (t = _(e)),
+      q({
+        event: "elementSelected",
+        selector: t,
+        display: e.tagName,
+        dom: dataUrl ?? "",
+        breadcrumb: ue(e),
+        innerHTML: e.innerHTML,
+        attributes: ae(e),
+      }),
+      Ae(),
+      ye(e, t);
   }
   !le &&
     "undefined" != typeof window &&
