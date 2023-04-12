@@ -691,6 +691,11 @@
     );
     
     duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
+
+    html2canvas(duplicateNode).then(function(canvas) {
+      download(canvas.toDataURL(), 'svg-image.png');
+  });
+
     htmlToImage.toJpeg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
