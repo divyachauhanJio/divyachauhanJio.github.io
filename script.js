@@ -673,17 +673,20 @@
     console.log("e=", e);
 
     e.crossOrigin = 'anonymous';
-    let duplicateNode = e.cloneNode(true);
+    let duplicateNode=e;
+
+    if(!e.childNodes.length) {
+      duplicateNode = e.parentNode.cloneNode(true);
+    } else {
+   duplicateNode=   e.cloneNode(true);
+    }
+
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
         el.parentNode.appendChild(document.createTextNode(el.src));
         console.log(el)
       }
     );
-
-    if(!duplicateNode.childNodes.length) {
-      duplicateNode = duplicateNode.parentNode;
-    }
     
     htmlToImage.toJpeg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
