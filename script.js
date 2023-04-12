@@ -673,13 +673,14 @@
     console.log("e=", e);
 
     e.crossOrigin = 'anonymous';
-    const duplicateNode = e.cloneNode(true);
+    let duplicateNode = e.cloneNode(true);
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
         el.replaceWith(document.createTextNode(el.src))
         console.log(el)
       }
     );
+    
     htmlToImage.toJpeg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
@@ -687,6 +688,7 @@
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
       });
+      
       htmlToImage.toSvg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
@@ -695,7 +697,7 @@
         console.log("error=", error);
       });
 
-      htmlToImage.toJpeg(duplicateNode)
+      htmlToImage.toPng(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.png');
