@@ -684,10 +684,11 @@
     duplicateNode.querySelectorAll('img').forEach(
       (el) =>  {
         el.parentNode.appendChild(document.createTextNode(el.src));
-        console.log(el)
+        console.log(el);
       }
     );
     
+    duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
     htmlToImage.toJpeg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
