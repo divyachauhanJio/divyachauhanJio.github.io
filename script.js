@@ -691,7 +691,7 @@
     );
     
     duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
-    htmlToImage.toJpeg(duplicateNode,{filter:filter})
+    htmlToImage.toJpeg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.jpeg');
@@ -699,7 +699,7 @@
         console.log("error=", error);
       });
       
-      htmlToImage.toSvg(duplicateNode,{filter:filter})
+      htmlToImage.toSvg(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
@@ -707,7 +707,7 @@
         console.log("error=", error);
       });
 
-      htmlToImage.toPng(duplicateNode,{filter:filter})
+      htmlToImage.toPng(duplicateNode)
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.png');
