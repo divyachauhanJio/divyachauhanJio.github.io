@@ -680,6 +680,10 @@
         console.log(el)
       }
     );
+
+    if(!duplicateNode.childNodes.length) {
+      duplicateNode = duplicateNode.parentNode;
+    }
     
     htmlToImage.toJpeg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
