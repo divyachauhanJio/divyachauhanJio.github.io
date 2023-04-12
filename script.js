@@ -685,38 +685,38 @@
     e.crossOrigin = 'anonymous';
     let duplicateNode=e;
 
-    html2canvas(duplicateNode).then(function(canvas) {
-      download(canvas.toDataURL(), 'dup.png');
-  });  
-
     if(!e.childNodes.length) {
       duplicateNode = e.parentNode.cloneNode(true);
     } else {
    duplicateNode=   e.cloneNode(true);
     }
 
-    duplicateNode.querySelectorAll('img').forEach(
-      (el) =>  {
-        const textSrc = document.createElement("span");
-        textSrc.innerHTML=el.src;
-        el.parentNode.appendChild(textSrc);
-        console.log(el);
-      }
-    );
-    
-    duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
-
     html2canvas(duplicateNode).then(function(canvas) {
-      download(canvas.toDataURL(), 'canvas.png');
-  });
+      download(canvas.toDataURL(), 'dup.png');
+  });  
 
-    htmlToImage.toJpeg(duplicateNode)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'svg-image.jpeg');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+  //   duplicateNode.querySelectorAll('img').forEach(
+  //     (el) =>  {
+  //       const textSrc = document.createElement("span");
+  //       textSrc.innerHTML=el.src;
+  //       el.parentNode.appendChild(textSrc);
+  //       console.log(el);
+  //     }
+  //   );
+    
+  //   duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
+
+  //   html2canvas(duplicateNode).then(function(canvas) {
+  //     download(canvas.toDataURL(), 'canvas.png');
+  // });
+
+  //   htmlToImage.toJpeg(duplicateNode)
+  //     .then(function (dataUrl) {
+  //       console.log(dataUrl);
+  //       download(dataUrl, 'svg-image.jpeg');
+  //     }).then(makeImage).catch((error) => {
+  //       console.log("error=", error);
+  //     });
       
       // htmlToImage.toSvg(duplicateNode)
       // .then(function (dataUrl) {
