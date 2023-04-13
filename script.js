@@ -664,6 +664,7 @@
     });
   }
   function filter(node) {
+    console.log(node)
     return (node.tagName.toLowerCase() !== 'img');
   }
 
@@ -695,17 +696,9 @@
       }
     );
     
-    duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
-
-    htmlToImage.toJpeg(duplicateNode)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'jht.jpeg');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+    // duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
       
-      htmlToImage.toSvg(duplicateNode)
+      htmlToImage.toSvg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
         download(dataUrl, 'svg-image.svg');
