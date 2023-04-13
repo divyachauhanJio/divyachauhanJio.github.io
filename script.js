@@ -665,7 +665,7 @@
   }
   function filter(node) {
     console.log(node)
-    return (node.tagName.toLowerCase() !== 'img');
+    return (!node.tagName || node.tagName.toLowerCase() !== 'img');
   }
 
   function pe(e, t) {
