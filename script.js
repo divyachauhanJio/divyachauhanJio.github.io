@@ -685,12 +685,12 @@
       (el) =>  {
         const textSrc = document.createElement("span");
         textSrc.innerHTML=el.src;
+        textSrc.style.display="none";
         el.parentNode.appendChild(textSrc);
         console.log(el);
       }
     );
     
-    // duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
     htmlToImage.toPng(duplicateNode,{filter:filter})
     .then(function (dataUrl) {
       console.log(dataUrl);
