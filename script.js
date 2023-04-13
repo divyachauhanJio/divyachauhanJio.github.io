@@ -669,19 +669,6 @@
 
   function pe(e, t) {
 
-  html2canvas(e).then(function(canvas) {
-    download(canvas.toDataURL(), 'e.png');
-});
-
-
-  htmlToImage.toJpeg(e)
-  .then(function (dataUrl) {
-    console.log(dataUrl);
-    download(dataUrl, 'e.jpeg');
-  }).then(makeImage).catch((error) => {
-    console.log("error=", error);
-  });
-
     e.crossOrigin = 'anonymous';
     let duplicateNode=e;
 
