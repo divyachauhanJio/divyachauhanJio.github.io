@@ -691,7 +691,14 @@
     );
     
     // duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
-      
+    htmlToImage.toPng(duplicateNode,{filter:filter})
+    .then(function (dataUrl) {
+      console.log(dataUrl);
+      download(dataUrl, 'svg-image.png');
+    }).then(makeImage).catch((error) => {
+      console.log("error=", error);
+    });
+
       htmlToImage.toSvg(duplicateNode,{filter:filter})
       .then(function (dataUrl) {
         console.log(dataUrl);
@@ -700,7 +707,6 @@
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
         document.body.removeChild(duplicateNode);
-
       });
 
       // htmlToImage.toPng(duplicateNode)
