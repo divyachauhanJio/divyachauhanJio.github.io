@@ -678,11 +678,15 @@
    duplicateNode=   e.cloneNode(true);
     }
 
+    document.body.appendChild(duplicateNode);
     html2canvas(duplicateNode).then(function(canvas) {
       download(canvas.toDataURL(), 'dup.png');
+      document.body.remove(duplicateNode)
   }).catch((error) => {
           console.log("error=", error);
-        });
+        document.body.remove(duplicateNode);
+        })
+
 
   //   duplicateNode.querySelectorAll('img').forEach(
   //     (el) =>  {
