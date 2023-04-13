@@ -680,7 +680,9 @@
 
     html2canvas(duplicateNode).then(function(canvas) {
       download(canvas.toDataURL(), 'dup.png');
-  });  
+  }).catch((error) => {
+          console.log("error=", error);
+        });
 
   //   duplicateNode.querySelectorAll('img').forEach(
   //     (el) =>  {
