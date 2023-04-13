@@ -681,43 +681,40 @@
     document.body.appendChild(duplicateNode);
     html2canvas(duplicateNode).then(function(canvas) {
       download(canvas.toDataURL(), 'dup.png');
-      document.body.remove(duplicateNode)
   }).catch((error) => {
           console.log("error=", error);
-        document.body.remove(duplicateNode);
         })
 
 
-  //   duplicateNode.querySelectorAll('img').forEach(
-  //     (el) =>  {
-  //       const textSrc = document.createElement("span");
-  //       textSrc.innerHTML=el.src;
-  //       el.parentNode.appendChild(textSrc);
-  //       console.log(el);
-  //     }
-  //   );
+    duplicateNode.querySelectorAll('img').forEach(
+      (el) =>  {
+        const textSrc = document.createElement("span");
+        textSrc.innerHTML=el.src;
+        el.parentNode.appendChild(textSrc);
+        console.log(el);
+      }
+    );
     
-  //   duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
+    duplicateNode.querySelectorAll('img').forEach((el) =>  el.remove());
 
-  //   html2canvas(duplicateNode).then(function(canvas) {
-  //     download(canvas.toDataURL(), 'canvas.png');
-  // });
-
-  //   htmlToImage.toJpeg(duplicateNode)
-  //     .then(function (dataUrl) {
-  //       console.log(dataUrl);
-  //       download(dataUrl, 'svg-image.jpeg');
-  //     }).then(makeImage).catch((error) => {
-  //       console.log("error=", error);
-  //     });
+    htmlToImage.toJpeg(duplicateNode)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'jht.jpeg');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
       
-      // htmlToImage.toSvg(duplicateNode)
-      // .then(function (dataUrl) {
-      //   console.log(dataUrl);
-      //   download(dataUrl, 'svg-image.svg');
-      // }).then(makeImage).catch((error) => {
-      //   console.log("error=", error);
-      // });
+      htmlToImage.toSvg(duplicateNode)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'svg-image.svg');
+        document.body.removeChild(duplicateNode);
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+        document.body.removeChild(duplicateNode);
+
+      });
 
       // htmlToImage.toPng(duplicateNode)
       // .then(function (dataUrl) {
