@@ -671,53 +671,81 @@
   function pe(e, t) {
 
     e.crossOrigin = 'anonymous';
-    let duplicateNode=e;
 
-    if(!e.childNodes.length) {
+
+    html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
+      image = canvas.toDataURL("image/jpeg");
+      image2 = canvas.toDataURL("image/png");
+      console.log("image, image2");
+      download(image2, "amit2.png");
+      download(image, "amit.jpeg");
+    });
+
+    htmlToImage.toSvg(e, { filter: filter })
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'svg-image1.svg');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
+
+    htmlToImage.toSvg(e)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'svg-image2.svg');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
+
+
+    let duplicateNode = e;
+
+    if (!e.childNodes.length) {
       duplicateNode = e.parentNode.cloneNode(true);
     } else {
-   duplicateNode=   e.cloneNode(true);
+      duplicateNode = e.cloneNode(true);
     }
 
     document.body.appendChild(duplicateNode);
 
     duplicateNode.querySelectorAll('img').forEach(
-      (el) =>  {
+      (el) => {
         const textSrc = document.createElement("span");
-        textSrc.innerHTML=el.src;
-        textSrc.style.display="none";
+        textSrc.innerHTML = el.src;
+        textSrc.style.display = "none";
         el.parentNode.appendChild(textSrc);
         console.log(el);
       }
     );
-    
-    htmlToImage.toPng(duplicateNode,{filter:filter})
-    .then(function (dataUrl) {
-      console.log(dataUrl);
-      download(dataUrl, 'svg-image.png');
-    }).then(makeImage).catch((error) => {
-      console.log("error=", error);
-    });
 
-      htmlToImage.toSvg(duplicateNode,{filter:filter})
+    // image size, format, hover state change, response headers, request
+    htmlToImage.toPng(duplicateNode, { filter: filter })
       .then(function (dataUrl) {
         console.log(dataUrl);
-        download(dataUrl, 'svg-image.svg');
+        download(dataUrl, 'dup-image1.png');
+      }).then(makeImage).catch((error) => {
+        console.log("error=", error);
+      });
+
+    htmlToImage.toJpeg(duplicateNode, { filter: filter })
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        download(dataUrl, 'dup-image2.jpeg');
         document.body.removeChild(duplicateNode);
       }).then(makeImage).catch((error) => {
         console.log("error=", error);
         document.body.removeChild(duplicateNode);
       });
 
-      // htmlToImage.toPng(duplicateNode)
-      // .then(function (dataUrl) {
-      //   console.log(dataUrl);
-      //   download(dataUrl, 'svg-image.png');
-      // }).then(makeImage).catch((error) => {
-      //   console.log("error=", error);
-      // });
+    // htmlToImage.toPng(duplicateNode)
+    // .then(function (dataUrl) {
+    //   console.log(dataUrl);
+    //   download(dataUrl, 'svg-image.png');
+    // }).then(makeImage).catch((error) => {
+    //   console.log("error=", error);
+    // });
 
-      t || (t = _(e)),
+    t || (t = _(e)),
       q({
         event: "elementSelected",
         selector: t,
