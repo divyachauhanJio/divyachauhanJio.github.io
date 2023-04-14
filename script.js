@@ -673,7 +673,6 @@
     let pureWhite = true;
 
     html2canvas(e, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
-      console.log(canvas1.height, canvas1.width)
       const imgData = canvas1.getContext("2d").getImageData(0, 0, canvas1.width, canvas1.height);
       image = canvas1.toDataURL("image/png");
 
@@ -681,8 +680,6 @@
         const red = imgData.data[i];
         const green = imgData.data[i + 1];
         const blue = imgData.data[i + 2];
-        const alpha = imgData.data[i + 3];
-        console.log(red, green, blue, alpha);
         if (red !== 255 || green !== 255 || blue !== 255) {
           pureWhite = false;
         }
@@ -693,7 +690,6 @@
         image = canvas2.toDataURL("image/png");
       }
 
-      download(image);
       t || (t = _(e)),
         q({
           event: "elementSelected",
@@ -785,33 +781,6 @@
       });
 
     })
-
-    // // image size, format, hover state change, response headers, request
-    // htmlToImage.toPng(duplicateNode, { filter: filter })
-    //   .then(function (dataUrl) {
-    //     console.log(dataUrl);
-    //     download(dataUrl, 'dup-image1.png');
-    //   }).then(makeImage).catch((error) => {
-    //     console.log("error=", error);
-    //   });
-
-    // htmlToImage.toJpeg(duplicateNode, { filter: filter })
-    //   .then(function (dataUrl) {
-    //     console.log(dataUrl);
-    //     download(dataUrl, 'dup-image2.jpeg');
-    //     document.body.removeChild(duplicateNode);
-    //   }).then(makeImage).catch((error) => {
-    //     console.log("error=", error);
-    //     document.body.removeChild(duplicateNode);
-    //   });
-
-    // htmlToImage.toPng(duplicateNode)
-    //   .then(function (dataUrl) {
-    //     console.log(dataUrl);
-    //     download(dataUrl, 'svg-image.png');
-    //   }).then(makeImage).catch((error) => {
-    //     console.log("error=", error);
-    //   });
   }
   !le &&
     "undefined" != typeof window &&
