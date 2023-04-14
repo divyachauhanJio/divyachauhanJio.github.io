@@ -679,6 +679,8 @@
       console.log("image, image2");
       download(image2, "amit2.png");
       download(image, "amit.jpeg");
+    }).catch((error) => {
+      console.log("error=", error);
     });
 
     htmlToImage.toSvg(e, { filter: filter })
@@ -698,44 +700,44 @@
       });
 
 
-    let duplicateNode = e;
+    // let duplicateNode = e;
 
-    if (!e.childNodes.length) {
-      duplicateNode = e.parentNode.cloneNode(true);
-    } else {
-      duplicateNode = e.cloneNode(true);
-    }
+    // if (!e.childNodes.length) {
+    //   duplicateNode = e.parentNode.cloneNode(true);
+    // } else {
+    //   duplicateNode = e.cloneNode(true);
+    // }
 
-    document.body.appendChild(duplicateNode);
+    // document.body.appendChild(duplicateNode);
 
-    duplicateNode.querySelectorAll('img').forEach(
-      (el) => {
-        const textSrc = document.createElement("span");
-        textSrc.innerHTML = el.src;
-        textSrc.style.display = "none";
-        el.parentNode.appendChild(textSrc);
-        console.log(el);
-      }
-    );
+    // duplicateNode.querySelectorAll('img').forEach(
+    //   (el) => {
+    //     const textSrc = document.createElement("span");
+    //     textSrc.innerHTML = el.src;
+    //     textSrc.style.display = "none";
+    //     el.parentNode.appendChild(textSrc);
+    //     console.log(el);
+    //   }
+    // );
 
     // image size, format, hover state change, response headers, request
-    htmlToImage.toPng(duplicateNode, { filter: filter })
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'dup-image1.png');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+    // htmlToImage.toPng(duplicateNode, { filter: filter })
+    //   .then(function (dataUrl) {
+    //     console.log(dataUrl);
+    //     download(dataUrl, 'dup-image1.png');
+    //   }).then(makeImage).catch((error) => {
+    //     console.log("error=", error);
+    //   });
 
-    htmlToImage.toJpeg(duplicateNode, { filter: filter })
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'dup-image2.jpeg');
-        document.body.removeChild(duplicateNode);
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-        document.body.removeChild(duplicateNode);
-      });
+    // htmlToImage.toJpeg(duplicateNode, { filter: filter })
+    //   .then(function (dataUrl) {
+    //     console.log(dataUrl);
+    //     download(dataUrl, 'dup-image2.jpeg');
+    //     document.body.removeChild(duplicateNode);
+    //   }).then(makeImage).catch((error) => {
+    //     console.log("error=", error);
+    //     document.body.removeChild(duplicateNode);
+    //   });
 
     // htmlToImage.toPng(duplicateNode)
     // .then(function (dataUrl) {
