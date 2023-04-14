@@ -761,7 +761,7 @@
         }
       }
       console.log(e.getElementsByTagName('img'), e.getElementsByTagName('img').length, e.tagName)
-      if (pureWhite && (e.getElementsByTagName('img').length <= 0 || e.tagName === "IMG")) {
+      if (pureWhite && (e.getElementsByTagName('img').length <= 0 || e.tagName !== "IMG")) {
         let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
         image = canvas2.toDataURL("image/png");
       }
