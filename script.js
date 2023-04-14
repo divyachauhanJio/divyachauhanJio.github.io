@@ -663,10 +663,10 @@
       image.src = encodeURI(uri);
     });
   }
-  function filter(node) {
-    console.log(node)
-    return (!node.tagName || node.tagName.toLowerCase() !== 'img');
-  }
+  // function filter(node) {
+  //   console.log(node)
+  //   return (!node.tagName || node.tagName.toLowerCase() !== 'img');
+  // }
 
   function pe(e, t) {
     let image = "";
@@ -690,7 +690,6 @@
         textSrc.style.background = "#f5f5f5";
         textSrc.style.fontSize = "20px";
         el.parentNode.appendChild(textSrc);
-        console.log(el);
       }
     );
 
@@ -706,7 +705,6 @@
         const green = imgData.data[i + 1];
         const blue = imgData.data[i + 2];
         const alpha = imgData.data[i + 3];
-        console.log(red, green, blue, alpha);
         if (red !== 255 || green !== 255 || blue !== 255) {
           pureWhite = false;
         }
