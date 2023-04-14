@@ -688,6 +688,7 @@
         textSrc.innerHTML = el.src;
         textSrc.style.color = "blue";
         textSrc.style.background = "#f5f5f5";
+        textSrc.style.fontSize = "18px";
         el.parentNode.appendChild(textSrc);
         console.log(el);
       }
