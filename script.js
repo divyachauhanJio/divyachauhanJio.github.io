@@ -669,58 +669,124 @@
   }
 
   function pe(e, t) {
+    let image = "";
+    let pureWhite = true;
 
-    e.crossOrigin = 'anonymous';
+    html2canvas(e, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
+      console.log(canvas1.height, canvas1.width)
+      const imgData = canvas1.getContext("2d").getImageData(0, 0, canvas1.width, canvas1.height);
+      image = canvas1.toDataURL("image/png");
+
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        const red = imgData.data[i];
+        const green = imgData.data[i + 1];
+        const blue = imgData.data[i + 2];
+        const alpha = imgData.data[i + 3];
+        console.log(red, green, blue, alpha);
+        if (red !== 255 || green !== 255 || blue !== 255) {
+          pureWhite = false;
+        }
+      }
+
+      if (pureWhite) {
+        let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
+        image = canvas2.toDataURL("image/png");
+      }
+
+      download(image);
+      t || (t = _(e)),
+        q({
+          event: "elementSelected",
+          selector: t,
+          display: e.tagName,
+          dom: image,
+          breadcrumb: ue(e),
+          innerHTML: e.innerHTML,
+          attributes: ae(e),
+        }),
+        Ae(),
+        ye(e, t);
+
+    }).catch(err => {
 
 
-    html2canvas(e, { allowTaint: true, useCORS: true, }).then(function (canvas) {
-      image = canvas.toDataURL("image/jpeg");
-      image2 = canvas.toDataURL("image/png");
-      console.log("image, image2");
-      download(image2, "amit2.png");
-      download(image, "amit.jpeg");
-    }).catch((error) => {
-      console.log("error=", error);
-    });
+      let duplicateNode = e;
 
-    htmlToImage.toSvg(e, { filter: filter })
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'svg-image1.svg');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
+      if (!e.childNodes.length) {
+        duplicateNode = e.parentNode.cloneNode(true);
+      } else {
+        duplicateNode = e.cloneNode(true);
+      }
+
+      document.body.appendChild(duplicateNode);
+
+      duplicateNode.querySelectorAll('img').forEach(
+        (el) => {
+          const textSrc = document.createElement("span");
+          textSrc.innerHTML = el.src;
+          textSrc.style.color = "blue";
+          el.parentNode.appendChild(textSrc);
+          console.log(el);
+        }
+      );
+
+      duplicateNode.querySelectorAll('img').forEach((el) => el.remove());
+
+      html2canvas(duplicateNode, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
+        console.log(canvas1.height, canvas1.width)
+        const imgData = canvas1.getContext("2d").getImageData(0, 0, canvas1.width, canvas1.height);
+        image = canvas1.toDataURL("image/png");
+
+        for (let i = 0; i < imgData.data.length; i += 4) {
+          const red = imgData.data[i];
+          const green = imgData.data[i + 1];
+          const blue = imgData.data[i + 2];
+          const alpha = imgData.data[i + 3];
+          console.log(red, green, blue, alpha);
+          if (red !== 255 || green !== 255 || blue !== 255) {
+            pureWhite = false;
+          }
+        }
+
+        if (pureWhite) {
+          let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
+          image = canvas2.toDataURL("image/png");
+        }
+
+        t || (t = _(e)),
+          q({
+            event: "elementSelected",
+            selector: t,
+            display: e.tagName,
+            dom: image,
+            breadcrumb: ue(e),
+            innerHTML: e.innerHTML,
+            attributes: ae(e),
+          }),
+          Ae(),
+          ye(e, t);
+
+        document.body.removeChild(duplicateNode);
+
+      }).catch((error) => {
+        t || (t = _(e)),
+          q({
+            event: "elementSelected",
+            selector: t,
+            display: e.tagName,
+            dom: image,
+            breadcrumb: ue(e),
+            innerHTML: e.innerHTML,
+            attributes: ae(e),
+          }),
+          Ae(),
+          ye(e, t);
+        document.body.removeChild(duplicateNode);
       });
 
-    htmlToImage.toSvg(e)
-      .then(function (dataUrl) {
-        console.log(dataUrl);
-        download(dataUrl, 'svg-image2.svg');
-      }).then(makeImage).catch((error) => {
-        console.log("error=", error);
-      });
+    })
 
-
-    // let duplicateNode = e;
-
-    // if (!e.childNodes.length) {
-    //   duplicateNode = e.parentNode.cloneNode(true);
-    // } else {
-    //   duplicateNode = e.cloneNode(true);
-    // }
-
-    // document.body.appendChild(duplicateNode);
-
-    // duplicateNode.querySelectorAll('img').forEach(
-    //   (el) => {
-    //     const textSrc = document.createElement("span");
-    //     textSrc.innerHTML = el.src;
-    //     textSrc.style.display = "none";
-    //     el.parentNode.appendChild(textSrc);
-    //     console.log(el);
-    //   }
-    // );
-
-    // image size, format, hover state change, response headers, request
+    // // image size, format, hover state change, response headers, request
     // htmlToImage.toPng(duplicateNode, { filter: filter })
     //   .then(function (dataUrl) {
     //     console.log(dataUrl);
@@ -740,25 +806,12 @@
     //   });
 
     // htmlToImage.toPng(duplicateNode)
-    // .then(function (dataUrl) {
-    //   console.log(dataUrl);
-    //   download(dataUrl, 'svg-image.png');
-    // }).then(makeImage).catch((error) => {
-    //   console.log("error=", error);
-    // });
-
-    t || (t = _(e)),
-      q({
-        event: "elementSelected",
-        selector: t,
-        display: e.tagName,
-        dom: dataUrl ?? "",
-        breadcrumb: ue(e),
-        innerHTML: e.innerHTML,
-        attributes: ae(e),
-      }),
-      Ae(),
-      ye(e, t);
+    //   .then(function (dataUrl) {
+    //     console.log(dataUrl);
+    //     download(dataUrl, 'svg-image.png');
+    //   }).then(makeImage).catch((error) => {
+    //     console.log("error=", error);
+    //   });
   }
   !le &&
     "undefined" != typeof window &&
