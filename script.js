@@ -761,7 +761,7 @@
         }
       }
 
-      if (pureWhite) {
+      if (pureWhite && !e.querySelectorAll('img').length) {
         let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
         image = canvas2.toDataURL("image/png");
       }
