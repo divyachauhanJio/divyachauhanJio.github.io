@@ -760,8 +760,8 @@
           pureWhite = false;
         }
       }
-      const notImage = e.getElementsByTagName('img').length <= 0 || String(e.tagName) !== "IMG";
-      console.log(e.getElementsByTagName('img'), e.getElementsByTagName('img').length, e.tagName, String(e.tagName) !== "IMG", notImage)
+      const notImage = e.getElementsByTagName('img').length <= 0 || String(e.tagName) != "IMG";
+      console.log(e.getElementsByTagName('img'), e.getElementsByTagName('img').length, e.tagName, String(e.tagName) != "IMG", notImage)
 
       if (pureWhite && notImage) {
         let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
