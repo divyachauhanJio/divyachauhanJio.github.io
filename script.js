@@ -672,7 +672,31 @@
     let image = "";
     let pureWhite = true;
 
-    html2canvas(e, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
+    let duplicateNode = e;
+
+    if (!e.childNodes.length) {
+      duplicateNode = e.parentNode.cloneNode(true);
+    } else {
+      duplicateNode = e.cloneNode(true);
+    }
+
+    document.body.appendChild(duplicateNode);
+
+    duplicateNode.querySelectorAll('img').forEach(
+      (el) => {
+        const textSrc = document.createElement("span");
+        textSrc.innerHTML = el.src;
+        textSrc.style.color = "blue";
+        textSrc.style.background = "#f5f5f5";
+        el.parentNode.appendChild(textSrc);
+        console.log(el);
+      }
+    );
+
+    duplicateNode.querySelectorAll('img').forEach((el) => el.remove());
+
+    html2canvas(duplicateNode, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
+      console.log(canvas1.height, canvas1.width)
       const imgData = canvas1.getContext("2d").getImageData(0, 0, canvas1.width, canvas1.height);
       image = canvas1.toDataURL("image/png");
 
@@ -680,6 +704,8 @@
         const red = imgData.data[i];
         const green = imgData.data[i + 1];
         const blue = imgData.data[i + 2];
+        const alpha = imgData.data[i + 3];
+        console.log(red, green, blue, alpha);
         if (red !== 255 || green !== 255 || blue !== 255) {
           pureWhite = false;
         }
@@ -703,84 +729,25 @@
         Ae(),
         ye(e, t);
 
-    }).catch(err => {
+      document.body.removeChild(duplicateNode);
+
+    }).catch((error) => {
+      t || (t = _(e)),
+        q({
+          event: "elementSelected",
+          selector: t,
+          display: e.tagName,
+          dom: image,
+          breadcrumb: ue(e),
+          innerHTML: e.innerHTML,
+          attributes: ae(e),
+        }),
+        Ae(),
+        ye(e, t);
+      document.body.removeChild(duplicateNode);
+    });
 
 
-      let duplicateNode = e;
-
-      if (!e.childNodes.length) {
-        duplicateNode = e.parentNode.cloneNode(true);
-      } else {
-        duplicateNode = e.cloneNode(true);
-      }
-
-      document.body.appendChild(duplicateNode);
-
-      duplicateNode.querySelectorAll('img').forEach(
-        (el) => {
-          const textSrc = document.createElement("span");
-          textSrc.innerHTML = el.src;
-          textSrc.style.color = "blue";
-          el.parentNode.appendChild(textSrc);
-          console.log(el);
-        }
-      );
-
-      duplicateNode.querySelectorAll('img').forEach((el) => el.remove());
-
-      html2canvas(duplicateNode, { allowTaint: true, useCORS: true, }).then(async canvas1 => {
-        console.log(canvas1.height, canvas1.width)
-        const imgData = canvas1.getContext("2d").getImageData(0, 0, canvas1.width, canvas1.height);
-        image = canvas1.toDataURL("image/png");
-
-        for (let i = 0; i < imgData.data.length; i += 4) {
-          const red = imgData.data[i];
-          const green = imgData.data[i + 1];
-          const blue = imgData.data[i + 2];
-          const alpha = imgData.data[i + 3];
-          console.log(red, green, blue, alpha);
-          if (red !== 255 || green !== 255 || blue !== 255) {
-            pureWhite = false;
-          }
-        }
-
-        if (pureWhite) {
-          let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
-          image = canvas2.toDataURL("image/png");
-        }
-
-        t || (t = _(e)),
-          q({
-            event: "elementSelected",
-            selector: t,
-            display: e.tagName,
-            dom: image,
-            breadcrumb: ue(e),
-            innerHTML: e.innerHTML,
-            attributes: ae(e),
-          }),
-          Ae(),
-          ye(e, t);
-
-        document.body.removeChild(duplicateNode);
-
-      }).catch((error) => {
-        t || (t = _(e)),
-          q({
-            event: "elementSelected",
-            selector: t,
-            display: e.tagName,
-            dom: image,
-            breadcrumb: ue(e),
-            innerHTML: e.innerHTML,
-            attributes: ae(e),
-          }),
-          Ae(),
-          ye(e, t);
-        document.body.removeChild(duplicateNode);
-      });
-
-    })
   }
   !le &&
     "undefined" != typeof window &&
