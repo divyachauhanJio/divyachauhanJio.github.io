@@ -761,6 +761,7 @@
         }
       }
 
+      console.log(e.querySelectorAll('img').length);
       if (pureWhite && !e.querySelectorAll('img').length) {
         let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
         image = canvas2.toDataURL("image/png");
@@ -797,6 +798,10 @@
           const textSrc = document.createElement("span");
           textSrc.innerHTML = el.src;
           textSrc.style.color = "blue";
+          textSrc.style.background = "#f5f5f5";
+          textSrc.style.fontSize = "22px";
+          textSrc.style.padding = "12px";
+          textSrc.style.margin = "12px";
           el.parentNode.appendChild(textSrc);
           console.log(el);
         }
