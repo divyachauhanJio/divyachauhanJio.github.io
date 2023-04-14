@@ -688,7 +688,9 @@
         textSrc.innerHTML = el.src;
         textSrc.style.color = "blue";
         textSrc.style.background = "#f5f5f5";
-        textSrc.style.fontSize = "20px";
+        textSrc.style.fontSize = "22px";
+        textSrc.style.padding = "12px";
+        textSrc.style.margin = "12px";
         el.parentNode.appendChild(textSrc);
       }
     );
