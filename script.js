@@ -760,9 +760,8 @@
           pureWhite = false;
         }
       }
-
-      console.log(e.querySelectorAll('img').length);
-      if (pureWhite && !e.querySelectorAll('img').length) {
+      console.log(e.getElementsByTagName('img').length)
+      if (pureWhite && e.getElementsByTagName('img').length <= 0) {
         let canvas2 = await html2canvas(e, { allowTaint: true, useCORS: true, backgroundColor: "black" });
         image = canvas2.toDataURL("image/png");
       }
