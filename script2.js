@@ -622,106 +622,33 @@
         (t.textContent = r.split(">")[r.split(">").length - 1] || "");
     } else e.style.display = "none";
   }
-
-  function html2CanvasHelper(e, image, duplicateNode = null) {
-    let pureWhite = true;
-
-    return new Promise((resolve) => {
-      html2canvas(duplicateNode, {
-        allowTaint: true,
-        useCORS: false,
-        logging: false,
-      })
-        .then(async (canvas1) => {
-          if (duplicateNode !== e) {
-            document.body.removeChild(duplicateNode);
-          }
-
-          const imgData = canvas1
-            .getContext("2d")
-            .getImageData(0, 0, canvas1.width, canvas1.height);
-          image = canvas1.toDataURL("image/png");
-
-          for (let i = 0; i < imgData.data.length; i += 4) {
-            const red = imgData.data[i];
-            const green = imgData.data[i + 1];
-            const blue = imgData.data[i + 2];
-            if (red !== 255 || green !== 255 || blue !== 255) {
-              pureWhite = false;
-            }
-          }
-
-          if (pureWhite) {
-            let canvas2 = await html2canvas(e, {
-              allowTaint: true,
-              useCORS: true,
-              backgroundColor: "black",
-            });
-            image = canvas2.toDataURL("image/png");
-          }
-
-          resolve(image);
-        })
-        .catch((err) => {
-          resolve(image);
-        });
-    });
+  function getElementByXpath(path) {
+    return document.evaluate(
+      path,
+      document,
+      null,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
+      null
+    ).singleNodeValue;
   }
-
   function pe(e, t) {
     let image = "";
-    let allImages = e.getElementsByTagName("img");
-    let only1Image = e.tagName === "IMG";
-    let duplicateNode = null;
-
-    // 1. Direct image tag selection
-    // 2. Image with anchor tag
-    // 3. Image inside button
-    if (allImages.length === 0 && !only1Image) {
-      duplicateNode = e;
-    } else if (only1Image) {
-      const spanImageNameNode = document.createElement("span");
-      const imgSrcArr = e.src.split("/");
-      const imgName = imgSrcArr[imgSrcArr.length - 1];
-
-      spanImageNameNode.innerText = ` Image: ${
-        e.alt && e.alt.length ? e.alt : imgName
-      } `;
-      document.body.appendChild(spanImageNameNode);
-      duplicateNode = spanImageNameNode;
-    } else if (allImages.length) {
-      duplicateNode = e.cloneNode(true);
-      duplicateNode.querySelectorAll("img").forEach((img) => {
-        const imgSrcArr = img.src.split("/");
-        const imgName = imgSrcArr[imgSrcArr.length - 1];
-        const spanImageNameNode = document.createElement("span");
-        spanImageNameNode.innerText = ` Image: ${
-          img.alt && img.alt.length ? img.alt : imgName
-        } `;
-        img.parentNode.replaceChild(spanImageNameNode, img);
-      });
-
-      document.body.appendChild(duplicateNode);
-    }
-
-    html2CanvasHelper(e, image, duplicateNode)
-      .then((finalImg) => {
-        t || (t = _(e)),
-          q({
-            event: "elementSelected",
-            selector: t,
-            display: e.tagName,
-            dom: finalImg,
-            breadcrumb: ue(e),
-            innerHTML: e.innerHTML,
-            attributes: ae(e),
-          }),
-          Ae(),
-          ye(e, t);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    html2canvas(e, { allowTaint: true, useCORS: true }).then(function (canvas) {
+      image = canvas.toDataURL("image/png");
+      alert(image);
+      t || (t = _(e)),
+        q({
+          event: "elementSelected",
+          selector: t,
+          display: e.tagName,
+          dom: image,
+          breadcrumb: ue(e),
+          innerHTML: e.innerHTML,
+          attributes: ae(e),
+        }),
+        Ae(),
+        ye(e, t);
+    });
   }
   !le &&
     "undefined" != typeof window &&
@@ -864,96 +791,36 @@
                       i = e.value,
                       o = e.attribute;
                     if ("html" === o) {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return k(n, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return k(n, function () {
                           return i;
                         });
-                      }
                     } else if ("class" === o) {
                       if ("append" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.add(i);
                         });
                       if ("remove" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.delete(i);
                         });
                       if ("set" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           e.clear(), e.add(i);
                         });
                     } else {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return D(n, o, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return D(n, o, function () {
                           return i;
                         });
-                      }
                     }
                     return t;
                   })(e);
@@ -976,14 +843,6 @@
             ? Ae()
             : "selectElement" === r.command
             ? (function (e, t) {
-                console.log(e);
-                htmlToImage
-                  .toPng(e.parentNode ? e.parentNode : e)
-                  .then(function (dataUrl) {
-                    console.log(dataUrl);
-                    download(dataUrl, "my-node.png");
-                  });
-
                 void 0 === t && (t = 0);
                 var n = oe(e, t);
                 n ? pe(n, e) : ye();
