@@ -622,6 +622,15 @@
         (t.textContent = r.split(">")[r.split(">").length - 1] || "");
     } else e.style.display = "none";
   }
+  function getElementByXpath(path) {
+    return document.evaluate(
+      path,
+      document,
+      null,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
+      null
+    ).singleNodeValue;
+  }
 
   function html2CanvasHelper(e, image, duplicateNode = null) {
     let pureWhite = true;
@@ -669,6 +678,40 @@
   }
 
   function pe(e, t) {
+    let loader = document.createElement("div");
+    loader.classList.add("abtesting-loader");
+    loader.style.cssText = `
+    position: fixed;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color:gray;
+  opacity:0.5;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+`;
+
+    let spinner = document.createElement("div");
+    spinner.classList.add("abtesting-spinner");
+
+    spinner.style.cssText = `
+    border: 8px solid white;
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+    `;
+    loader.appendChild(spinner);
+    document.body.appendChild(loader);
+
     let image = "";
     let allImages = e.getElementsByTagName("img");
     let only1Image = e.tagName === "IMG";
@@ -684,9 +727,11 @@
       const imgSrcArr = e.src.split("/");
       const imgName = imgSrcArr[imgSrcArr.length - 1];
 
-      spanImageNameNode.innerText = ` Image: ${
+      spanImageNameNode.innerText = `Image: ${
         e.alt && e.alt.length ? e.alt : imgName
-      } `;
+      }`;
+      spanImageNameNode.style.marginLeft = "4px";
+      spanImageNameNode.style.marginRight = "4px";
       document.body.appendChild(spanImageNameNode);
       duplicateNode = spanImageNameNode;
     } else if (allImages.length) {
@@ -695,9 +740,11 @@
         const imgSrcArr = img.src.split("/");
         const imgName = imgSrcArr[imgSrcArr.length - 1];
         const spanImageNameNode = document.createElement("span");
-        spanImageNameNode.innerText = ` Image: ${
+        spanImageNameNode.innerText = `Image: ${
           img.alt && img.alt.length ? img.alt : imgName
-        } `;
+        }`;
+        spanImageNameNode.style.marginLeft = "4px";
+        spanImageNameNode.style.marginRight = "10px";
         img.parentNode.replaceChild(spanImageNameNode, img);
       });
 
@@ -706,6 +753,7 @@
 
     html2CanvasHelper(e, image, duplicateNode)
       .then((finalImg) => {
+        document.body.removeChild(loader);
         t || (t = _(e)),
           q({
             event: "elementSelected",
@@ -720,8 +768,24 @@
           ye(e, t);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        document.body.removeChild(loader);
+
+        // Since we don't want the visual editor to stop working due to issue in generating the goal's image,
+        // added the same code to in catch block as well to open the element editing box
+        t || (t = _(e)),
+          q({
+            event: "elementSelected",
+            selector: t,
+            display: e.tagName,
+            dom: finalImg,
+            breadcrumb: ue(e),
+            innerHTML: e.innerHTML,
+            attributes: ae(e),
+          }),
+          Ae(),
+          ye(e, t);
+      })
+      .finally(() => {});
   }
   !le &&
     "undefined" != typeof window &&
@@ -864,96 +928,36 @@
                       i = e.value,
                       o = e.attribute;
                     if ("html" === o) {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return k(n, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return k(n, function () {
                           return i;
                         });
-                      }
                     } else if ("class" === o) {
                       if ("append" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.add(i);
                         });
                       if ("remove" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.delete(i);
                         });
                       if ("set" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           e.clear(), e.add(i);
                         });
                     } else {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return D(n, o, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return D(n, o, function () {
                           return i;
                         });
-                      }
                     }
                     return t;
                   })(e);
@@ -976,14 +980,6 @@
             ? Ae()
             : "selectElement" === r.command
             ? (function (e, t) {
-                console.log(e);
-                htmlToImage
-                  .toPng(e.parentNode ? e.parentNode : e)
-                  .then(function (dataUrl) {
-                    console.log(dataUrl);
-                    download(dataUrl, "my-node.png");
-                  });
-
                 void 0 === t && (t = 0);
                 var n = oe(e, t);
                 n ? pe(n, e) : ye();
