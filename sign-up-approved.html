@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JioMarket</title>
+    <style>
+        @font-face {
+            font-family: JioType;
+            src: url(https://hdn-1.jiomarketx0.de/x0/company/3/applications/000000000000000000000001/comms-template/fonts/free/original/Zfsy7Ecvv-JioType-Medium.ttf);
+        }
+        @font-face {
+            font-family: JioTypeBlack;
+            src: url(https://hdn-1.jiomarketx0.de/x0/company/3/applications/000000000000000000000001/comms-template/fonts/free/original/SpkC_n49s-JioType-Black_0.ttf);
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            background-color: #cccccc;
+        }
+        table {
+            border-spacing: 0;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            max-width: 640px;
+            table-layout: fixed;
+            background-color: #ffffff;
+            padding-bottom: 60px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .main-container {
+            margin: 0 auto;
+            width: 100%;
+            /* max-width: 531px; */
+            border-spacing: 0;
+            position: relative;
+        }
+        table.header {
+            height: 63px;
+            background: #3E0084;
+            min-width: 100%;
+        }
+        .header-title {
+            color: #ffffff;
+            font-size: 18px;
+            font-family: JioType;
+            font-weight: 500;
+        }
+        .header-logo {
+            min-width: 32px;
+            height: 32px;
+        }
+        .logo-container {
+            display: flex;
+            color:whitesmoke;
+            font-weight: 500;
+            font-size: large;
+            /* width: 32px; */
+            height: 100%;
+            padding-left: 32px;
+            padding-right: 16px;
+        }
+        .body-container {
+            width: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        p.customer-title {
+            font-size: 18px;
+            font-family: 'JioType';
+            font-weight: 700;
+            text-align: center;
+            margin: 82px auto 24px;
+            line-height: 24px;
+            color: #130028;
+        }
+        .verification-info.jiomarket-partner-support {
+            margin-bottom: 32px;
+        }
+        .verification-info {
+            font-size: 18px;
+            font-family: 'JioType';
+            font-weight: 500;
+            line-height: 24px;
+            width: 380px;
+            margin: auto;
+            margin-bottom: 30px;
+            color: #141414;
+        }
+        .verification-code {
+            font-size: 40px;
+            color: #3E0084;
+            font-family: 'JioType';
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: 10px;
+        }
+        .btn {
+            background-color: #3E0084;
+            padding: 19px 50px;
+            font-size: 16px;
+            font-family: 'JioType';
+            font-weight: 700;
+            border-radius: 1000px;
+            text-decoration: none;
+        }
+        .verify {
+            margin: 0 auto;
+            width: 199px;
+            display: block;
+            height: 56px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .trouble-msg {
+            margin: 16px auto 24px;
+            line-height: 16px;
+            font-size: 12px;
+            color: #5A5A5A;
+            width: 353px;
+            font-weight: 500;
+            font-family: 'JioType';
+        }
+        .trouble-url {
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            color: #6D17CE;
+            font-family: 'JioType';
+            font-weight: 700;
+        }
+        .jiomarket-logo {
+            width: 82px;
+            height: 23px;
+        }
+        .disclaimer-msg {
+            margin: 24px auto 52px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            font-family: 'JioType';
+            color: #5A5A5A;
+        }
+        .help-container {
+            background-color: #F0E8FA;
+            width: 100%;
+        }
+        .msg-header {
+            margin: 28px auto 24px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 28px;
+            letter-spacing: -0.03em;
+            color: #25AB21;
+            font-family: 'JioTypeBlack';
+        }
+        .msg-header .icon {
+            vertical-align: middle;
+        }
+        .msg-header .success-icon {
+            min-width: 26px;
+            height: 26px;
+            padding-right: 8px;
+        }
+        .need-help {
+            margin: 14px auto 3px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 24px;
+            font-family: 'JioType';
+            text-align: center;
+            color: #2B005C;
+        }
+        .queries {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            font-family: 'JioType';
+            text-align: center;
+            margin-bottom: 22px;
+            color: #130028;
+        }
+        .footer-container {
+            width: 100%;
+            background-color: #ffffff;
+            max-width: 531px;
+            margin: 0 auto;
+        }
+        .address {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            font-family: 'JioType';
+            color: #B5B5B5;
+            text-align: center;
+            margin: 0px auto 8px;
+        }
+        .copyright {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            font-family: 'JioType';
+            color: #B5B5B5;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        a.mailto {
+            color: #B5B5B5;
+            text-decoration: none;
+        }
+        a.mailtoUs {
+            color: #6D17CE;
+            text-decoration: none;
+        }
+        ul.footer-links {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .footer-links .link {
+            display: inline-block;
+        }
+        .footer-links a.links {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 16px;
+            font-family: 'JioType';
+            color: #6D17CE;
+            border-left: 2px solid #6D17CE;            
+            display: inline;
+            padding: 0 2px 0 4px;
+        }
+        .footer-links li {
+            margin-left: 0;
+        }
+        .footer-links .link a.links.first {
+            border-left: none;
+        }
+        .footer-links .link:first-child .links {
+            border-left: none;
+        }
+        .download {
+            font-weight: 900;
+            font-size: 16px;
+            line-height: 20px;
+            font-family: 'JioType';
+            color: #141414;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .google-play {
+            padding-right: 8px;
+        }
+        .play-stores {
+            text-align: center;
+        }
+        .second-help-container {
+            margin: 0px auto 24px;
+            background-color: #F0E8FA;
+            width: 100%;
+            padding: 28px 32px 28px 57px;
+        }
+        .what-next {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'JioType';
+            color: #2B005C;
+            margin-bottom: 10px;
+        }
+        .confirmation-note {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #2B005C;
+            font-family: 'JioType';
+            max-width: 200px;
+        }
+        p.verification-info.sincerely {
+            margin: 0 auto;
+        }
+        .second-need-help {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'JioType';
+            color: #2B005C;
+            margin-bottom: 10px;
+            text-align: left;
+            margin-left: 10px;
+        }
+        .second-queries {
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'JioType';
+            line-height: 24px;
+            margin-left: 10px;
+        }
+        .quick-links-list li {
+            list-style-type: none;
+            margin: 2px 0;
+        }
+        .quick-links-list li a {
+            text-decoration: none;
+            font-family: 'JioType';
+            color: #6D17CE;
+            font-size: 14px;
+        }
+        .logo{
+            display: flex;
+align-items: center;
+height: 100%;
+        }
+        .logo-row{
+            height: 100%;
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="header-container" width="100%">
+            <tr>
+                <td>
+                    <table class="header">
+                        <tr class="logo-row">
+                            <td class="logo-container">
+                                <div class="logo">
+                                <a href="#"><img class="header-logo" src="https://abtesting-sit.com/_next/image?url=%2Fjio_logo_blue.png&w=128&q=75" /></a>
+                                <div class="">A/B Testing Tool</div>
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="body-container" width="100%">
+            <tr>
+                <td>
+                    <p class="customer-title">Dear {{userName}}</p>
+                    <div class="msg-header">
+                        <span class="icon">
+                            <img class="success-icon" src="https://hdn-1.jiomarketx0.de/x0/company/3/applications/000000000000000000000001/comms-template/images/free/original/qglPkoPdD-tick.png"
+                                alt="success">
+                        </span>
+                        Your Account is ready !
+                    </div>
+                    <p class="verification-info">This email serves as a confirmation that your account is activated and you are officially a part of the {{company_id}} ABTesting family!</p>
+                    <p class="verification-info">Remember to check our <a href="{{platformHelpLink}}">help</a> page so that you can get the most out of available tools.
+                        Click <a href="{{platformPortalLink}}">here</a> to login to the portal and begin your journey. </p>
+                    <p class="verification-info">Thank you for joining, let’s make Development easier!</p>                   
+                    <p class="verification-info sincerely">Sincerely,</p>
+                    <p class="verification-info jiomarket-partner-support">ABTesting Support Team</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{platformPortalLink}}" class="btn verify" style="color: #ffffff;">Login Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="disclaimer-msg">Note: This is a system generated email, do not reply to this email id.</p>
+                </td>
+            </tr>
+        </table>
+        <table class="second-help-container out-for-delivery-screen" width="100%">
+            <tr>
+                <td width="50%">
+                    <p class="what-next">Quick Links</p>
+                    <ul class="quick-links-list">
+                        <li><a href="{{platformHelpLink}}">Help</a></li>
+                        <li><a href="{{global_variables.faqs}}">FAQs</a></li>
+                    </ul>
+                </td>
+                <td width="50%">
+                    <p class="second-need-help">Need Help ?</p>
+                    <p class="second-queries">For queries or any assistance mail us at <a class="mailtoUs" href="mailto:support@abtesting.com">support@abtesting.com</a></p>
+                </td>
+            </tr>
+        </table>
+        <table class="footer-container" width="100%">
+            <tr>
+                <td>
+                    <p class="address">Reliance Corporate Park, MIDC Industrial Area, Ghansoli, Navi Mumbai, Maharashtra 400701.</p>
+                    <p class="copyright">Copyright © 2022 Reliance Retail Ltd. All rights reserved.</a></p>
+                    <ul class="footer-links">
+                        <li class="link"><a href="{{global_variables.terms_policy}}" class="links first">Terms & Conditions</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>

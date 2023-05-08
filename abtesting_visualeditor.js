@@ -622,6 +622,15 @@
         (t.textContent = r.split(">")[r.split(">").length - 1] || "");
     } else e.style.display = "none";
   }
+  function getElementByXpath(path) {
+    return document.evaluate(
+      path,
+      document,
+      null,
+      XPathResult.FIRST_ORDERED_NODE_TYPE,
+      null
+    ).singleNodeValue;
+  }
 
   function html2CanvasHelper(e, image, duplicateNode = null) {
     let pureWhite = true;
@@ -707,12 +716,46 @@
     let allImages = e.getElementsByTagName("img");
     let only1Image = e.tagName === "IMG";
     let duplicateNode = null;
+    let allInputElement = e.getElementsByTagName("input");
+    let only1InputFormElement = e.tagName === "INPUT";
 
     // 1. Direct image tag selection
     // 2. Image with anchor tag
     // 3. Image inside button
     if (allImages.length === 0 && !only1Image) {
-      duplicateNode = e;
+      if (allInputElement.length === 0 && !only1InputFormElement) {
+        duplicateNode = e;
+      } else if (only1InputFormElement) {
+        let label = "";
+        if (e?.labels?.length) {
+          label = e.labels[0].innerHTML;
+        }
+        const divNode = document.createElement("div");
+        const spanInputLabelNode = document.createElement("span");
+        divNode.appendChild(spanInputLabelNode);
+        spanInputLabelNode.innerText = `Form: Input\n${label} `;
+        spanInputLabelNode.style.margin = "4px";
+        document.body.appendChild(spanInputLabelNode);
+        duplicateNode = spanInputLabelNode;
+        duplicateNode.appendChild(e.cloneNode(true));
+      } else if (allInputElement.length) {
+        duplicateNode = e.cloneNode(true);
+        duplicateNode.querySelectorAll("input").forEach((_input) => {
+          const label = _input?.labels?.[0]?.innerHTML ?? "";
+          const divNode = document.createElement("div");
+
+          const spanInputLabelNode = document.createElement("span");
+          divNode.appendChild(spanInputLabelNode);
+
+          spanInputLabelNode.innerText = `Form: Input\n${label} `;
+          spanInputLabelNode.style.margin = "4px";
+          _input.parentNode.appendChild(spanInputLabelNode, _input);
+        });
+
+        document.body.appendChild(duplicateNode);
+      } else {
+        duplicateNode = e;
+      }
     } else if (only1Image) {
       const spanImageNameNode = document.createElement("span");
       const imgSrcArr = e.src.split("/");
@@ -919,96 +962,36 @@
                       i = e.value,
                       o = e.attribute;
                     if ("html" === o) {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return k(n, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return k(n, function () {
                           return i;
                         });
-                      }
                     } else if ("class" === o) {
                       if ("append" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.add(i);
                         });
                       if ("remove" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           return e.delete(i);
                         });
                       if ("set" === r)
                         return I(n, function (e) {
-                          console.log(e);
-                          htmlToImage
-                            .toPng(e.parentNode ? e.parentNode : e)
-                            .then(function (dataUrl) {
-                              console.log(dataUrl);
-                              download(dataUrl, "my-node.png");
-                            });
-
                           e.clear(), e.add(i);
                         });
                     } else {
-                      if ("append" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("append" === r)
                         return D(n, o, function (e) {
                           return e + i;
                         });
-                      }
-                      if ("set" === r) {
-                        console.log(e);
-                        htmlToImage
-                          .toPng(e.parentNode ? e.parentNode : e)
-                          .then(function (dataUrl) {
-                            console.log(dataUrl);
-                            download(dataUrl, "my-node.png");
-                          });
-
+                      if ("set" === r)
                         return D(n, o, function () {
                           return i;
                         });
-                      }
                     }
                     return t;
                   })(e);
@@ -1031,14 +1014,6 @@
             ? Ae()
             : "selectElement" === r.command
             ? (function (e, t) {
-                console.log(e);
-                htmlToImage
-                  .toPng(e.parentNode ? e.parentNode : e)
-                  .then(function (dataUrl) {
-                    console.log(dataUrl);
-                    download(dataUrl, "my-node.png");
-                  });
-
                 void 0 === t && (t = 0);
                 var n = oe(e, t);
                 n ? pe(n, e) : ye();
